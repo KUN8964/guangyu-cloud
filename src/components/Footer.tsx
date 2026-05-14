@@ -1,69 +1,80 @@
 import Link from "next/link";
-import { Phone, Mail } from "lucide-react";
-import { LightningLogoPixel } from "@/components/ProductPixels";
 
-const footerLinks = [
+const footerCols = [
   {
-    title: "产品与服务",
-    links: ["智能边缘服务器", "分布式云存储", "分布式算力", "AI 知识库", "企业云盘"],
+    title: "Products",
+    links: [
+      { label: "edge-server.tsx", href: "/products/edge-server" },
+      { label: "cloud-storage.tsx", href: "/products/cloud-storage" },
+      { label: "distributed-compute.tsx", href: "/products/distributed-compute" },
+      { label: "ai-knowledge.tsx", href: "/products/ai-knowledge" },
+      { label: "enterprise-drive.tsx", href: "/products/enterprise-drive" },
+    ],
   },
   {
-    title: "解决方案",
-    links: ["制造业", "政府", "金融", "互联网"],
+    title: "Solutions",
+    links: [
+      { label: "manufacturing.tsx", href: "/solutions/manufacturing" },
+      { label: "government.tsx", href: "/solutions/government" },
+      { label: "finance.tsx", href: "/solutions/finance" },
+      { label: "internet.tsx", href: "/solutions/internet" },
+    ],
   },
   {
-    title: "帮助与支持",
-    links: ["开发文档", "技术支持", "价格计算器"],
+    title: "Support",
+    links: [
+      { label: "docs.md", href: "#" },
+      { label: "support.md", href: "#" },
+      { label: "pricing.tsx", href: "#" },
+    ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-abyss border-t border-border/40">
-      <div className="max-w-[1200px] mx-auto px-6 py-16">
+    <footer className="bg-bg-overlay border-t border-border-default">
+      <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <LightningLogoPixel size={36} />
-              <span className="font-[family-name:var(--font-press-start)] text-sm neon-cyan tracking-wider">
-                光宇云
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full bg-success shadow-[0_0_6px_rgba(63,185,80,0.4)]" />
+              <span className="font-mono text-[13px] text-text-primary font-semibold tracking-tight">
+                guangyu-cloud
               </span>
             </div>
 
-            <p className="text-sm text-text-muted mb-5 leading-relaxed">
-              全球领先的 Web3.0 分布式存算网络服务商
+            <p className="text-[12px] text-text-muted leading-relaxed mb-4 font-mono">
+              Web3.0 Distributed Storage & Compute Network
             </p>
 
-            <div className="space-y-3 text-sm text-text-muted font-[family-name:var(--font-vt323)] tracking-wider">
-              <div className="flex items-center gap-2 hover:text-neon-cyan transition-colors duration-200 cursor-pointer">
-                <Phone size={14} />
-                <span>&gt; 联系我们</span>
+            <div className="space-y-2 text-[12px] text-text-muted font-mono">
+              <div className="flex items-center gap-2 hover:text-text-link cursor-pointer transition-colors">
+                <span className="text-[10px]">$</span>
+                <span>contact --help</span>
               </div>
-              <div className="flex items-center gap-2 hover:text-neon-purple transition-colors duration-200 cursor-pointer">
-                <Mail size={14} />
-                <span>&gt; 关注公众号</span>
+              <div className="flex items-center gap-2 hover:text-text-link cursor-pointer transition-colors">
+                <span className="text-[10px]">$</span>
+                <span>wechat --subscribe</span>
               </div>
             </div>
           </div>
 
           {/* Link columns */}
-          {footerLinks.map((col) => (
+          {footerCols.map((col) => (
             <div key={col.title}>
-              <h4 className="font-[family-name:var(--font-press-start)] text-[10px] tracking-wider
-                text-neon-cyan mb-4">
-                [{col.title}]
+              <h4 className="font-mono text-[11px] text-text-muted mb-3 uppercase tracking-wider">
+                // {col.title}
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {col.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <Link
-                      href="#"
-                      className="text-sm text-text-muted hover:text-neon-purple
-                        font-[family-name:var(--font-vt323)] tracking-wider
-                        transition-colors duration-150"
+                      href={link.href}
+                      className="text-[12px] text-text-secondary hover:text-text-link
+                        font-mono transition-colors duration-150"
                     >
-                      &gt; {link}
+                      📄 {link.label}
                     </Link>
                   </li>
                 ))}
@@ -72,15 +83,15 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 pt-8 border-t border-border/30">
-          <p className="text-[10px] text-text-muted text-center leading-relaxed
-            font-[family-name:var(--font-vt323)] tracking-wider">
-            浙 ICP 备 2025184107 号 - 1 浙公网安备 33010202005126 号
-            <br />
-            <span className="text-neon-cyan/50">
-              &copy; 2025 光宇云计算科技有限公司 | GUANGYU CLOUD COMPUTING TECHNOLOGY CO., LTD.
-            </span>
+        {/* Bottom status bar */}
+        <div className="mt-10 pt-6 border-t border-border-muted flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-[10px] text-text-muted font-mono">
+            浙ICP备2025184107号-1 浙公网安备33010202005126号
+          </p>
+          <p className="text-[10px] text-text-muted font-mono flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-success" />
+            © 2025 GUANGYU CLOUD COMPUTING TECHNOLOGY CO., LTD.
+            <span className="text-accent ml-2">main</span>
           </p>
         </div>
       </div>

@@ -1,342 +1,303 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   光宇云 V2 — Mosaic Retro / Synthwave Theme
-   Design Tokens & Pixel Art Utilities
+   光宇云 V3 — IDE Developer Theme
+   VS Code / GitHub Dark inspired
    ═══════════════════════════════════════════ */
 
 @theme inline {
-  /* ── Brand / Synthwave Palette ── */
-  --color-neon-cyan: #00F0FF;
-  --color-neon-magenta: #FF2D95;
-  --color-neon-purple: #B44CFF;
-  --color-neon-gold: #FFD700;
-  --color-neon-green: #39FF14;
-
   /* ── Background Layers ── */
-  --color-abyss: #06060E;
-  --color-void: #0A0A16;
-  --color-deep: #0D0D1F;
-  --color-surface: #12122A;
-  --color-card: #18183A;
-  --color-border: #252550;
-  --color-border-glow: #3A3A70;
+  --color-bg-base: #0d1117;
+  --color-bg-overlay: #161b22;
+  --color-bg-surface: #1e1e1e;
+  --color-bg-bar: #2d2d2d;
+  --color-bg-input: #0d1117;
+
+  /* ── Borders ── */
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-border-accent: #007acc;
 
   /* ── Text ── */
-  --color-text-primary: #E8E8F8;
-  --color-text-secondary: #9090B8;
-  --color-text-muted: #585880;
+  --color-text-primary: #c9d1d9;
+  --color-text-secondary: #8b949e;
+  --color-text-muted: #484f58;
+  --color-text-link: #58a6ff;
+
+  /* ── Accent Colors ── */
+  --color-accent: #007acc;
+  --color-accent-hover: #1a8ad4;
+  --color-error: #f85149;
+  --color-error-bg: rgba(248, 81, 73, 0.1);
+  --color-success: #3fb950;
+  --color-success-bg: rgba(63, 185, 80, 0.1);
+  --color-warning: #d29922;
+  --color-warning-bg: rgba(210, 153, 34, 0.1);
+
+  /* ── Syntax Colors ── */
+  --color-syntax-keyword: #ff7b72;
+  --color-syntax-string: #a5d6ff;
+  --color-syntax-function: #d2a8ff;
+  --color-syntax-comment: #8b949e;
+  --color-syntax-variable: #ffa657;
+  --color-syntax-type: #ffa657;
+  --color-syntax-number: #a5d6ff;
 
   /* ── Font Stacks ── */
-  --font-pixel: var(--font-press-start);
-  --font-mono: var(--font-vt323);
-  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular,
+    "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
 /* ═══════════════════════════════════════════
-   Base / Body
+   Base
    ═══════════════════════════════════════════ */
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #252550 #0A0A16;
+  scrollbar-color: #30363d #0d1117;
 }
 
 body {
-  background: var(--color-abyss);
+  background: var(--color-bg-base);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ═══════════════════════════════════════════
-   CRT Scanline Overlay (subtle)
+   IDE Window Frame
    ═══════════════════════════════════════════ */
 
-.scanlines::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
+.ide-window {
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-bg-surface);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.ide-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--color-bg-bar);
+  border-bottom: 1px solid var(--color-border-default);
+  user-select: none;
+}
+
+.ide-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: default;
+}
+.ide-dot-red {
+  background: #ff5f56;
+}
+.ide-dot-yellow {
+  background: #ffbd2e;
+}
+.ide-dot-green {
+  background: #27c93f;
 }
 
 /* ═══════════════════════════════════════════
-   Pixel Art Borders — box-shadow technique
+   IDE Code Block
    ═══════════════════════════════════════════ */
 
-.pixel-border {
-  box-shadow:
-    4px 0 0 var(--color-border-glow),
-    -4px 0 0 var(--color-border-glow),
-    0 4px 0 var(--color-border-glow),
-    0 -4px 0 var(--color-border-glow);
-}
-
-.pixel-border-cyan {
-  box-shadow:
-    4px 0 0 #00F0FF,
-    -4px 0 0 #00F0FF,
-    0 4px 0 #00F0FF,
-    0 -4px 0 #00F0FF;
-}
-
-.pixel-border-magenta {
-  box-shadow:
-    4px 0 0 #FF2D95,
-    -4px 0 0 #FF2D95,
-    0 4px 0 #FF2D95,
-    0 -4px 0 #FF2D95;
-}
-
-.pixel-border-purple {
-  box-shadow:
-    4px 0 0 #B44CFF,
-    -4px 0 0 #B44CFF,
-    0 4px 0 #B44CFF,
-    0 -4px 0 #B44CFF;
-}
-
-.pixel-border-gold {
-  box-shadow:
-    4px 0 0 #FFD700,
-    -4px 0 0 #FFD700,
-    0 4px 0 #FFD700,
-    0 -4px 0 #FFD700;
-}
-
-/* Inset pixel border variant */
-.pixel-border-inset {
-  box-shadow:
-    inset 4px 0 0 var(--color-border-glow),
-    inset -4px 0 0 var(--color-border-glow),
-    inset 0 4px 0 var(--color-border-glow),
-    inset 0 -4px 0 var(--color-border-glow);
-}
-
-/* ═══════════════════════════════════════════
-   Neon Glow Effects
-   ═══════════════════════════════════════════ */
-
-.neon-cyan {
-  color: #00F0FF;
-  text-shadow:
-    0 0 7px #00F0FF,
-    0 0 20px #00F0FF,
-    0 0 40px #00A0CC;
-}
-
-.neon-magenta {
-  color: #FF2D95;
-  text-shadow:
-    0 0 7px #FF2D95,
-    0 0 20px #FF2D95,
-    0 0 40px #CC0066;
-}
-
-.neon-purple {
-  color: #B44CFF;
-  text-shadow:
-    0 0 7px #B44CFF,
-    0 0 20px #B44CFF,
-    0 0 40px #7B2FFF;
-}
-
-.neon-gold {
-  color: #FFD700;
-  text-shadow:
-    0 0 7px #FFD700,
-    0 0 20px #FFA500,
-    0 0 40px #FF8C00;
-}
-
-/* Box neon glow */
-.neon-box-cyan {
-  box-shadow:
-    0 0 10px rgba(0, 240, 255, 0.3),
-    0 0 30px rgba(0, 240, 255, 0.1),
-    inset 0 0 10px rgba(0, 240, 255, 0.05);
-}
-
-.neon-box-magenta {
-  box-shadow:
-    0 0 10px rgba(255, 45, 149, 0.3),
-    0 0 30px rgba(255, 45, 149, 0.1),
-    inset 0 0 10px rgba(255, 45, 149, 0.05);
-}
-
-.neon-box-purple {
-  box-shadow:
-    0 0 10px rgba(180, 76, 255, 0.3),
-    0 0 30px rgba(180, 76, 255, 0.1),
-    inset 0 0 10px rgba(180, 76, 255, 0.05);
-}
-
-/* ═══════════════════════════════════════════
-   Pixel Art Background Grid
-   ═══════════════════════════════════════════ */
-
-.bg-pixel-grid {
-  background-image:
-    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
-  background-size: 16px 16px;
-}
-
-.bg-pixel-grid-large {
-  background-image:
-    linear-gradient(rgba(180, 76, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(180, 76, 255, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-/* ═══════════════════════════════════════════
-   Isometric Perspective Cards
-   ═══════════════════════════════════════════ */
-
-.isometric {
-  transform:
-    perspective(800px)
-    rotateX(5deg)
-    rotateY(-5deg);
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-.isometric:hover {
-  transform:
-    perspective(800px)
-    rotateX(2deg)
-    rotateY(-2deg)
-    translateY(-6px)
-    scale(1.02);
-}
-
-/* ═══════════════════════════════════════════
-   Pixelated Image Rendering
-   ═══════════════════════════════════════════ */
-
-.pixelated {
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-}
-
-/* ═══════════════════════════════════════════
-   Retro Section Dividers
-   ═══════════════════════════════════════════ */
-
-.section-divider {
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #00F0FF,
-    #B44CFF,
-    #FF2D95,
-    transparent
-  );
-}
-
-/* ═══════════════════════════════════════════
-   Pixel Button
-   ═══════════════════════════════════════════ */
-
-.pixel-btn {
-  position: relative;
-  transition: all 0.1s ease;
-}
-.pixel-btn::after {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 4px;
-  right: -4px;
-  bottom: -4px;
-  z-index: -1;
-  border: 2px solid currentColor;
-  transition: all 0.1s ease;
-}
-.pixel-btn:active {
-  transform: translate(2px, 2px);
-}
-.pixel-btn:active::after {
-  transform: translate(-2px, -2px);
-}
-
-/* ═══════════════════════════════════════════
-   Terminal / Matrix text effect
-   ═══════════════════════════════════════════ */
-
-.terminal-text {
+.code-block {
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  overflow: hidden;
   font-family: var(--font-mono);
-  color: #39FF14;
-  text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
 }
 
-.terminal-cursor::after {
-  content: "▌";
-  animation: blink 1s step-end infinite;
-  color: #39FF14;
+.code-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: var(--color-bg-overlay);
+  border-bottom: 1px solid var(--color-border-muted);
+  font-size: 12px;
+  color: var(--color-text-muted);
 }
 
-@keyframes blink {
-  50% { opacity: 0; }
+.code-line {
+  display: flex;
+  font-size: 13px;
+  line-height: 1.8;
+  min-height: 23px;
+}
+
+.code-line.highlighted {
+  background: var(--color-accent);
+  background: rgba(0, 122, 204, 0.08);
+  border-left: 2px solid var(--color-accent);
+}
+
+.code-ln {
+  color: var(--color-text-muted);
+  width: 40px;
+  text-align: right;
+  padding-right: 16px;
+  user-select: none;
+  flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════════
-   Data Dashboard Mockup Styling
+   IDE Tab Bar
    ═══════════════════════════════════════════ */
 
-.dashboard-card {
-  background: linear-gradient(135deg, #12122A 0%, #18183A 100%);
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
+.ide-tabs {
+  display: flex;
+  background: var(--color-bg-bar);
+  border-bottom: 1px solid var(--color-border-default);
+  overflow-x: auto;
 }
 
-.dashboard-bar {
+.ide-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  border-right: 1px solid var(--color-border-muted);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.ide-tab:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.ide-tab.active {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border-top: 2px solid var(--color-accent);
+}
+
+/* ═══════════════════════════════════════════
+   IDE Buttons
+   ═══════════════════════════════════════════ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--color-accent);
+  color: white;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--color-accent);
+  transition: background 0.15s;
+}
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--color-bg-bar);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-default);
+  transition: background 0.15s;
+}
+.btn-secondary:hover {
+  background: #3a3a3a;
+}
+
+/* ═══════════════════════════════════════════
+   IDE Badge / Tag
+   ═══════════════════════════════════════════ */
+
+.ide-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+/* ═══════════════════════════════════════════
+   IDE Section Header
+   ═══════════════════════════════════════════ */
+
+.ide-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.ide-section-title {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+}
+
+/* ═══════════════════════════════════════════
+   Status indicators
+   ═══════════════════════════════════════════ */
+
+.status-dot {
+  width: 8px;
   height: 8px;
-  border-radius: 0;
-  image-rendering: pixelated;
+  border-radius: 50%;
+  display: inline-block;
+}
+.status-online {
+  background: var(--color-success);
+  box-shadow: 0 0 6px rgba(63, 185, 80, 0.4);
+}
+.status-offline {
+  background: var(--color-error);
+  box-shadow: 0 0 6px rgba(248, 81, 73, 0.4);
+}
+.status-pending {
+  background: var(--color-warning);
+  box-shadow: 0 0 6px rgba(210, 153, 34, 0.4);
 }
 
 /* ═══════════════════════════════════════════
-   Glitch hover effect
+   Scrollbar
    ═══════════════════════════════════════════ */
 
-.glitch-hover:hover {
-  animation: glitch 0.3s ease;
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(2px, -1px); }
-  60% { transform: translate(-1px, 1px); }
-  80% { transform: translate(1px, -2px); }
-  100% { transform: translate(0); }
+::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
 }
-
-/* ═══════════════════════════════════════════
-   Reduced Motion
-   ═══════════════════════════════════════════ */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  .glitch-hover:hover {
-    animation: none;
-  }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
 }

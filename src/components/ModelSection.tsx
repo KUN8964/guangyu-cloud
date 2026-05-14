@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Cpu } from "lucide-react";
+import { Search } from "lucide-react";
 import { aiModels, modelCategories } from "@/data/solutions";
 
 export default function ModelSection() {
@@ -20,62 +20,48 @@ export default function ModelSection() {
   });
 
   return (
-    <section id="models" className="py-24 bg-void relative">
-      <div className="absolute inset-0 bg-pixel-grid-large opacity-30" />
-
-      <div className="relative max-w-[1200px] mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
-          className="text-center mb-12"
-        >
-          <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-purple mb-3 tracking-widest">
-            &gt; AI_MODELS_
+    <section id="models" className="py-20 bg-bg-overlay relative">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <p className="ide-section-label">
+            {/* src/models/registry.ts */}
           </p>
-          <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
-            neon-cyan mb-4">
-            AI 模型服务
+          <h2 className="ide-section-title">
+            const modelRegistry: AIModel[]
           </h2>
-          <p className="text-text-secondary max-w-[520px] mx-auto text-sm">
-            <span className="text-neon-gold">▸</span>{" "}
-            面向多行业，提供开箱即用、高精准的分布式 AI 算法模型
+          <p className="text-[13px] text-text-secondary font-mono max-w-[520px] mx-auto">
+            <span className="text-syntax-comment">// </span>
+            Production-ready AI models for multiple industries
           </p>
-        </motion.div>
+        </div>
 
         {/* Search + Tabs */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">
-          <div className="relative w-full sm:w-72">
-            <Search
-              size={14}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-neon-cyan/50"
-            />
+        <div className="flex flex-col sm:flex-row items-center gap-3 mb-10">
+          <div className="relative w-full sm:w-64">
+            <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
             <input
               type="text"
-              placeholder="> 输入关键词搜索..."
+              placeholder="$ grep -r ..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-abyss border border-border/40
-                text-sm text-text-primary placeholder:text-text-muted
-                font-[family-name:var(--font-vt323)] tracking-wider
-                focus:outline-none focus:border-neon-cyan/60 focus:shadow-[0_0_12px_rgba(0,240,255,0.15)]
+              className="w-full pl-9 pr-4 py-2.5 bg-bg-base border border-border-default rounded-md
+                text-[12px] text-text-primary placeholder:text-text-muted
+                font-mono focus:outline-none focus:border-accent/60
                 transition-all duration-200"
             />
           </div>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-1.5 flex-wrap">
             {modelCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
-                className={`px-4 py-2 text-xs font-[family-name:var(--font-press-start)] tracking-wider
-                  border transition-all duration-200 ${
-                    activeTab === cat
-                      ? "bg-neon-cyan text-abyss border-neon-cyan shadow-[0_0_12px_rgba(0,240,255,0.3)]"
-                      : "bg-surface text-text-secondary border-border/30 hover:border-neon-cyan/40 hover:text-neon-cyan"
-                  }`}
+                className={`px-3 py-1.5 text-[11px] font-mono rounded-md border transition-all ${
+                  activeTab === cat
+                    ? "bg-accent text-white border-accent"
+                    : "bg-bg-base text-text-secondary border-border-default hover:border-accent/40 hover:text-text-link"
+                }`}
               >
-                [{cat}]
+                {cat}
               </button>
             ))}
           </div>
@@ -85,44 +71,35 @@ export default function ModelSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab + search}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             {filtered.length > 0 ? (
-              filtered.map((m, i) => (
+              filtered.map((m) => (
                 <div
                   key={m.id}
-                  className="group p-6 bg-card border border-border/30
-                    hover:border-neon-purple/40 hover:shadow-[0_0_20px_rgba(180,76,255,0.1)]
-                    transition-all duration-300"
+                  className="p-4 border border-border-default rounded-lg bg-bg-base
+                    hover:border-accent/20 transition-all duration-300"
                 >
-                  {/* Category badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] px-3 py-1 bg-neon-purple/10 border border-neon-purple/20
-                      text-neon-purple font-[family-name:var(--font-press-start)] tracking-wider">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] px-2 py-0.5 bg-bg-overlay border border-border-muted
+                      rounded-md text-syntax-function font-mono">
                       {m.category}
                     </span>
-                    <Cpu size={14} className="text-text-muted group-hover:text-neon-purple
-                      transition-colors duration-300" />
                   </div>
-
-                  <h3 className="font-[family-name:var(--font-press-start)] text-xs tracking-wider
-                    text-text-primary mb-3">
+                  <h3 className="font-mono text-[13px] font-bold text-text-primary mb-2">
                     {m.name}
                   </h3>
-                  <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                  <p className="text-[12px] text-text-secondary font-mono leading-relaxed mb-3">
                     {m.description}
                   </p>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1">
                     {m.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] px-2 py-1 bg-surface border border-border/20
-                          text-text-muted font-[family-name:var(--font-vt323)] tracking-wider"
-                      >
+                      <span key={tag} className="text-[10px] px-1.5 py-0.5 bg-bg-overlay
+                        rounded-md text-text-muted font-mono">
                         {tag}
                       </span>
                     ))}
@@ -130,9 +107,9 @@ export default function ModelSection() {
                 </div>
               ))
             ) : (
-              <div className="col-span-full py-20 text-center">
-                <p className="font-[family-name:var(--font-vt323)] text-lg text-text-muted tracking-wider">
-                  &gt; 404_MODEL_NOT_FOUND_
+              <div className="col-span-full py-16 text-center">
+                <p className="font-mono text-[13px] text-text-muted">
+                  $ grep: no matches found
                 </p>
               </div>
             )}

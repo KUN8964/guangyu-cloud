@@ -1,24 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Press_Start_2P, VT323 } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const pressStart = Press_Start_2P({
-  variable: "--font-press-start",
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const vt323 = VT323({
-  variable: "--font-vt323",
-  weight: "400",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -37,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body
-        className={`${geistSans.variable} ${pressStart.variable} ${vt323.variable} antialiased bg-abyss text-text-primary scanlines`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg-base text-text-primary`}
       >
         <Header />
         <main>{children}</main>

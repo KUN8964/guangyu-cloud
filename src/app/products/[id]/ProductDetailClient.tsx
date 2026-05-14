@@ -2,93 +2,21 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Cpu,
-  Zap,
-  Network,
-  Shield,
-  Lock,
-  HardDrive,
-  MapPin,
-  TrendingDown,
-  Layers,
-  BarChart3,
-  Gauge,
-  Database,
-  Maximize,
-  Home,
-  Users,
-  Cloud,
-  ShieldCheck,
-  FileKey,
-  ArrowUpDown,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Product, ProductDetail } from "@/data/products";
 import { products } from "@/data/products";
-import { productPixels } from "@/components/ProductPixels";
 
 /* ═══════════════════════════════════════════
-   Icon name → component mapping
+   Syntax-colored feature icons (emoji mapping)
    ═══════════════════════════════════════════ */
 
-const iconMap: Record<string, LucideIcon> = {
-  Cpu, Zap, Network, Shield, Lock, HardDrive, MapPin, TrendingDown,
-  Layers, BarChart3, Gauge, Database, Maximize, Home, Users, Cloud,
-  ShieldCheck, FileKey, ArrowUpDown,
+const featureIcons: Record<string, string> = {
+  Cpu: "🖥", Zap: "⚡", Network: "🌐", Shield: "🛡",
+  Lock: "🔐", HardDrive: "💾", MapPin: "📍", TrendingDown: "📉",
+  Layers: "📚", BarChart3: "📊", Gauge: "⏱", Database: "🗄",
+  Maximize: "📐", Home: "🏠", Users: "👥", Cloud: "☁️",
+  ShieldCheck: "✅", FileKey: "🔑", ArrowUpDown: "↕",
 };
-
-/* ═══════════════════════════════════════════
-   Color cycling helper
-   ═══════════════════════════════════════════ */
-
-const neonColors = [
-  { border: "border-neon-cyan/20", glow: "neon-box-cyan", text: "text-neon-cyan", bg: "bg-neon-cyan/10" },
-  { border: "border-neon-magenta/20", glow: "neon-box-magenta", text: "text-neon-magenta", bg: "bg-neon-magenta/10" },
-  { border: "border-neon-purple/20", glow: "neon-box-purple", text: "text-neon-purple", bg: "bg-neon-purple/10" },
-  { border: "border-neon-gold/20", glow: "neon-box-purple", text: "text-neon-gold", bg: "bg-neon-gold/10" },
-];
-
-/* ═══════════════════════════════════════════
-   Floating particles (same as Hero)
-   ═══════════════════════════════════════════ */
-
-function DataParticles() {
-  const particles = [
-    { x: "10%", y: "20%", s: 3, d: 3, c: "bg-neon-cyan" },
-    { x: "85%", y: "15%", s: 2, d: 4, c: "bg-neon-magenta" },
-    { x: "70%", y: "70%", s: 4, d: 3.5, c: "bg-neon-purple" },
-    { x: "15%", y: "80%", s: 2, d: 5, c: "bg-neon-gold" },
-    { x: "50%", y: "50%", s: 3, d: 2.5, c: "bg-neon-cyan" },
-    { x: "30%", y: "35%", s: 2, d: 4.5, c: "bg-neon-purple" },
-    { x: "90%", y: "55%", s: 3, d: 3, c: "bg-neon-magenta" },
-    { x: "60%", y: "85%", s: 2, d: 4, c: "bg-neon-gold" },
-  ];
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((p, i) => (
-        <motion.div
-          key={i}
-          className={`absolute rounded-none ${p.c} opacity-30`}
-          style={{ left: p.x, top: p.y, width: p.s, height: p.s }}
-          animate={{ y: [0, -20, 0], opacity: [0.2, 0.5, 0.2] }}
-          transition={{
-            duration: p.d,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.5,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════
-   Main Component
-   ═══════════════════════════════════════════ */
 
 export default function ProductDetailClient({
   product,
@@ -97,12 +25,11 @@ export default function ProductDetailClient({
   product: Product;
   detail?: ProductDetail;
 }) {
-  const PixelArt = productPixels[product.id];
   if (!detail) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-16">
-        <p className="font-[family-name:var(--font-press-start)] text-neon-gold text-sm">
-          [PRODUCT_DETAIL_COMING_SOON]
+      <div className="min-h-screen flex items-center justify-center pt-12">
+        <p className="font-mono text-[13px] text-warning">
+          $ cat {product.id}.tsx → file not found
         </p>
       </div>
     );
@@ -110,386 +37,226 @@ export default function ProductDetailClient({
 
   return (
     <div className="min-h-screen">
-      {/* ═══════════════════════════════════════
-          HERO BANNER
-          ═══════════════════════════════════════ */}
-      <section className="relative pt-28 pb-24 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-abyss bg-pixel-grid">
-          <div
-            className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2
-              w-[700px] h-[700px] rounded-full opacity-15"
-            style={{
-              background:
-                "radial-gradient(circle, #00F0FF 0%, #B44CFF 30%, #FF2D95 60%, transparent 80%)",
-              filter: "blur(80px)",
-            }}
-          />
-          <DataParticles />
-        </div>
-
-        <div className="relative max-w-[1200px] mx-auto px-6">
-          {/* Back link */}
+      {/* ═══ HERO ═══ */}
+      <section className="relative pt-20 pb-16 bg-bg-base">
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Breadcrumb */}
           <motion.div
-            initial={{ opacity: 0, x: -12 }}
+            initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-10"
+            transition={{ duration: 0.2 }}
+            className="mb-8"
           >
             <Link
               href="/#products"
-              className="inline-flex items-center gap-2 text-xs text-text-muted
-                hover:text-neon-cyan font-[family-name:var(--font-press-start)] tracking-wider
-                transition-colors duration-200"
+              className="inline-flex items-center gap-1.5 text-[11px] text-text-muted
+                hover:text-text-link font-mono transition-colors"
             >
-              <ArrowLeft size={14} />
-              [返回产品列表]
+              <ArrowLeft size={12} />
+              cd ../products
             </Link>
           </motion.div>
 
-          {/* Hero content — two column layout */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
-              <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-cyan mb-3 tracking-widest">
-                &gt; {product.subtitle}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.05 }}
+          >
+            <p className="font-mono text-[11px] text-accent mb-2">
+              📄 src/products/{product.id}.tsx
             </p>
-            <h1 className="font-[family-name:var(--font-press-start)] text-[28px] leading-[1.5]
-              neon-purple mb-6 tracking-wider">
+            <h1 className="font-mono text-[26px] font-bold text-text-primary mb-3 tracking-tight">
               {product.name}
             </h1>
-            <p className="text-text-secondary text-base leading-relaxed max-w-[600px] mb-8">
-              <span className="neon-gold">▸</span>{" "}
+            <p className="text-[13px] text-text-secondary font-mono max-w-[560px] mb-6">
+              <span className="text-syntax-comment">/** </span>
               {detail.heroTagline}
+              <span className="text-syntax-comment"> */</span>
             </p>
 
-            {/* Highlights */}
-            <div className="flex flex-wrap gap-3 mb-10">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5 mb-8">
               {product.highlights.map((h) => (
-                <span
-                  key={h}
-                  className="text-xs px-4 py-2 bg-surface border border-border/40
-                    text-text-secondary font-[family-name:var(--font-vt323)] tracking-wider"
-                >
+                <span key={h} className="text-[10px] px-2 py-0.5 bg-bg-overlay border border-border-muted
+                  rounded-md text-text-muted font-mono">
                   {h}
                 </span>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/register"
-                className="pixel-btn inline-flex items-center gap-2 px-8 py-4
-                  bg-neon-cyan text-abyss font-bold
-                  font-[family-name:var(--font-press-start)] text-xs tracking-wider
-                  hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] transition-shadow duration-200"
-              >
-                ▶ 立即体验
+            <div className="flex flex-wrap gap-3">
+              <Link href="/register" className="btn-primary text-[12px]">
+                $ deploy --now
               </Link>
-              <a
-                href="#features"
-                className="inline-flex items-center gap-2 px-8 py-4
-                  border border-neon-purple/50 text-neon-purple
-                  font-[family-name:var(--font-press-start)] text-xs tracking-wider
-                  hover:bg-neon-purple/10 transition-all duration-200"
-              >
-                了解更多
-                <ArrowRight size={14} />
+              <a href="#features" className="btn-secondary text-[12px]">
+                cat FEATURES.md
               </a>
             </div>
-            </motion.div>
-
-            {/* Right: Pixel art illustration */}
-            {PixelArt && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="hidden lg:flex items-center justify-center"
-              >
-                <PixelArt size={200} className="drop-shadow-[0_0_25px_rgba(0,240,255,0.3)]" />
-              </motion.div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════
-          CORE FEATURES
-          ═══════════════════════════════════════ */}
-      <section id="features" className="py-24 bg-deep relative">
-        <div className="absolute inset-0 bg-pixel-grid opacity-40" />
-
-        <div className="relative max-w-[1200px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-            className="text-center mb-14"
-          >
-            <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-cyan mb-3 tracking-widest">
-              &gt; FEATURES_
-            </p>
-            <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
-              neon-purple mb-4">
-              核心能力
-            </h2>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {detail.features.map((feat, i) => {
-              const IconComp = iconMap[feat.icon] || Cpu;
-              const color = neonColors[i % neonColors.length];
-              return (
-                <motion.div
-                  key={feat.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.08 }}
-                  className={`group isometric p-8 bg-card border ${color.border} ${color.glow}`}
-                >
-                  <div
-                    className={`w-12 h-12 flex items-center justify-center mb-5 ${color.bg} border border-current/20`}
-                  >
-                    <IconComp size={24} className={color.text} />
-                  </div>
-                  <h3 className="font-[family-name:var(--font-press-start)] text-xs tracking-wider
-                    text-text-primary mb-2">
-                    [{feat.title}]
-                  </h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
-                    {feat.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
+      {/* ═══ FEATURES ═══ */}
+      <section id="features" className="py-16 bg-bg-overlay">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-10">
+            <p className="ide-section-label">interface ProductFeatures</p>
+            <h2 className="ide-section-title">Core Capabilities</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {detail.features.map((feat, i) => (
+              <motion.div
+                key={feat.title}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.2, delay: i * 0.04 }}
+                className="p-5 border border-border-default rounded-lg bg-bg-base
+                  hover:border-accent/20 transition-all duration-300"
+              >
+                <p className="font-mono text-[13px] font-bold text-text-primary mb-2">
+                  {featureIcons[feat.icon] || "▪"} {feat.title}
+                </p>
+                <p className="text-[12px] text-text-secondary font-mono leading-relaxed">
+                  <span className="text-syntax-comment">// </span>
+                  {feat.desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════
-          SPECIFICATIONS
-          ═══════════════════════════════════════ */}
+      {/* ═══ SPECS ═══ */}
       {detail.specs.length > 0 && (
-        <section className="py-24 bg-void relative">
-          <div className="absolute inset-0 bg-pixel-grid-large opacity-20" />
+        <section className="py-16 bg-bg-base">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="mb-10">
+              <p className="ide-section-label">type SpecTable</p>
+              <h2 className="ide-section-title">Technical Specifications</h2>
+            </div>
 
-          <div className="relative max-w-[1200px] mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
-              className="text-center mb-14"
-            >
-              <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-magenta mb-3 tracking-widest">
-                &gt; SPECS_
-              </p>
-              <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
-                neon-cyan mb-4">
-                技术规格
-              </h2>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
-              className="max-w-[800px] mx-auto bg-card border border-border/40"
-            >
-              {detail.specs.map((spec, i) => (
-                <div
-                  key={spec.label}
-                  className={`flex items-center px-6 py-5 ${
-                    i < detail.specs.length - 1 ? "border-b border-border/20" : ""
-                  }`}
-                >
-                  <span className="w-[180px] shrink-0 text-xs text-text-muted
-                    font-[family-name:var(--font-press-start)] tracking-wider">
-                    [{spec.label}]
-                  </span>
-                  <span className="text-sm text-text-secondary font-[family-name:var(--font-vt323)]
-                    tracking-wide leading-relaxed">
-                    {spec.value}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
+            <div className="max-w-[700px] code-block">
+              <div className="code-header">
+                📄 specs.json
+              </div>
+              <div className="p-5 font-mono text-[12px] leading-7">
+                <span className="text-syntax-keyword">{"{"}</span>
+                {detail.specs.map((spec, i) => (
+                  <div key={spec.label} className="flex ml-4">
+                    <span className="text-syntax-string">&quot;{spec.label}&quot;</span>
+                    <span className="text-text-muted">: </span>
+                    <span className="text-syntax-string">&quot;{spec.value}&quot;</span>
+                    {i < detail.specs.length - 1 ? <span className="text-text-muted">,</span> : ""}
+                  </div>
+                ))}
+                <span className="text-syntax-keyword">{"}"}</span>
+              </div>
+            </div>
           </div>
         </section>
       )}
 
-      {/* ═══════════════════════════════════════
-          USE CASES
-          ═══════════════════════════════════════ */}
-      <section className="py-24 bg-deep relative">
-        <div className="absolute inset-0 bg-pixel-grid opacity-40" />
+      {/* ═══ USE CASES ═══ */}
+      <section className="py-16 bg-bg-overlay">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-10">
+            <p className="ide-section-label">enum UseCase</p>
+            <h2 className="ide-section-title">Use Cases</h2>
+          </div>
 
-        <div className="relative max-w-[1200px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-            className="text-center mb-14"
-          >
-            <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-gold mb-3 tracking-widest">
-              &gt; USE_CASES_
-            </p>
-            <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
-              neon-magenta mb-4">
-              适用场景
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {detail.useCases.map((uc, i) => {
-              const color = neonColors[i % neonColors.length];
-              return (
-                <motion.div
-                  key={uc}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.08 }}
-                  className={`group isometric p-6 bg-card border ${color.border} ${color.glow}
-                    text-center hover:translate-y-[-4px] transition-all duration-300`}
-                >
-                  <span className="font-[family-name:var(--font-press-start)] text-[10px]
-                    text-text-muted block mb-3 tracking-widest">
-                    [{String(i + 1).padStart(2, "0")}]
-                  </span>
-                  <p className={`font-[family-name:var(--font-press-start)] text-xs tracking-wider
-                    ${color.text}`}>
-                    {uc}
-                  </p>
-                </motion.div>
-              );
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {detail.useCases.map((uc, i) => (
+              <motion.div
+                key={uc}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.2, delay: i * 0.04 }}
+                className="p-5 border border-border-default rounded-lg bg-bg-base text-center
+                  hover:border-accent/20 transition-all duration-300"
+              >
+                <span className="font-mono text-[18px] text-text-muted block mb-2">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="font-mono text-[12px] text-accent font-semibold">
+                  {uc}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════
-          CTA STRIP
-          ═══════════════════════════════════════ */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-abyss">
-          <div className="absolute inset-0 bg-pixel-grid opacity-50" />
-          <div
-            className="absolute bottom-0 left-0 right-0 h-1/2"
-            style={{
-              background:
-                "linear-gradient(to top, #FF2D95 0%, #B44CFF 30%, transparent 100%)",
-              opacity: 0.12,
-            }}
-          />
-          <div className="absolute bottom-[140px] left-0 right-0 h-[2px] section-divider" />
-        </div>
-
-        <div className="relative max-w-[1200px] mx-auto px-6 text-center">
+      {/* ═══ CTA ═══ */}
+      <section className="py-16 bg-bg-base text-center">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
           >
-            <Zap
-              size={32}
-              className="mx-auto mb-6 text-neon-gold
-                drop-shadow-[0_0_12px_rgba(255,215,0,0.6)]"
-            />
+            <div className="inline-flex items-center gap-2 mb-5 px-4 py-2
+              border border-border-default rounded-md bg-bg-overlay">
+              <span className="w-2 h-2 rounded-full bg-success" />
+              <span className="text-[11px] text-text-muted font-mono">
+                $ ssh edge-node-01 --deploy
+              </span>
+            </div>
 
-            <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
-              neon-cyan mb-6">
-              准备好体验了吗？
+            <h2 className="font-mono text-xl font-bold text-text-primary mb-3">
+              Ready to deploy?
             </h2>
-
-            <p className="text-text-secondary mb-10 max-w-[480px] mx-auto text-sm">
-              <span className="neon-gold">▸</span>{" "}
-              注册即可获得免费试用额度，无需信用卡
+            <p className="text-[12px] text-text-secondary font-mono mb-6">
+              <span className="text-syntax-comment"># </span>
+              Free trial. No credit card.
             </p>
 
-            <Link
-              href="/register"
-              className="pixel-btn inline-flex items-center gap-3 px-10 py-4
-                bg-neon-magenta text-white font-bold
-                font-[family-name:var(--font-press-start)] text-sm tracking-wider
-                hover:shadow-[0_0_40px_rgba(255,45,149,0.6)] transition-shadow duration-200"
-            >
-              ▶ 免费试用
+            <Link href="/register" className="btn-primary text-[12px] !py-2.5 !px-8">
+              $ ./deploy --free-trial
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════
-          RELATED PRODUCTS
-          ═══════════════════════════════════════ */}
-      <section className="py-24 bg-void relative">
-        <div className="absolute inset-0 bg-pixel-grid-large opacity-20" />
+      {/* ═══ RELATED PRODUCTS ═══ */}
+      <section className="py-16 bg-bg-overlay">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-10">
+            <p className="ide-section-label">import related</p>
+            <h2 className="ide-section-title">Related Products</h2>
+          </div>
 
-        <div className="relative max-w-[1200px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-            className="text-center mb-14"
-          >
-            <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-purple mb-3 tracking-widest">
-              &gt; RELATED_
-            </p>
-            <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
-              neon-cyan mb-4">
-              相关产品
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {products
               .filter((p) => p.id !== product.id)
-              .map((p, i) => {
-                const color = neonColors[i % neonColors.length];
-                return (
-                  <motion.div
-                    key={p.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: i * 0.08 }}
-                  >
-                    <Link
-                      href={p.href}
-                      className={`block isometric p-6 bg-card border ${color.border} ${color.glow}
-                        h-full group hover:translate-y-[-4px] transition-all duration-300`}
-                    >
-                      <p className="font-[family-name:var(--font-vt323)] text-xs text-text-muted mb-2 tracking-wide">
-                        &gt; {p.subtitle}
-                      </p>
-                      <h3 className="font-[family-name:var(--font-press-start)] text-xs tracking-wider
-                        text-text-primary mb-3">
-                        {p.name}
-                      </h3>
-                      <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-2">
-                        {p.description}
-                      </p>
-                      <span className={`inline-flex items-center gap-1.5 text-xs
-                        font-[family-name:var(--font-press-start)] tracking-wider ${color.text}
-                        group-hover:drop-shadow-[0_0_8px_currentColor] transition-all duration-200`}>
-                        [详细了解]
-                        <ArrowRight size={12} />
-                      </span>
-                    </Link>
-                  </motion.div>
-                );
-              })}
+              .map((p) => (
+                <Link
+                  key={p.id}
+                  href={p.href}
+                  className="block p-4 border border-border-default rounded-lg bg-bg-base
+                    hover:border-accent/20 transition-all duration-300 group"
+                >
+                  <p className="text-[10px] text-text-muted font-mono mb-1.5">
+                    📄 {p.id}.tsx
+                  </p>
+                  <p className="text-[11px] text-text-secondary font-mono mb-1.5">
+                    {p.subtitle}
+                  </p>
+                  <h3 className="font-mono text-[13px] font-bold text-text-primary mb-2">
+                    {p.name}
+                  </h3>
+                  <p className="text-[11px] text-text-muted font-mono leading-relaxed line-clamp-2 mb-2">
+                    {p.description}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-[11px] font-mono
+                    text-text-link group-hover:underline">
+                    open
+                    <ArrowRight size={10} />
+                  </span>
+                </Link>
+              ))}
           </div>
         </div>
       </section>

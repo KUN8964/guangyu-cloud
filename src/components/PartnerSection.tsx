@@ -5,110 +5,88 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const partners = [
-  { name: "中国联通", logo: "联通" },
-  { name: "阿里云", logo: "阿里云" },
-  { name: "华为云", logo: "华为" },
-  { name: "百度智能云", logo: "百度" },
-  { name: "腾讯云", logo: "腾讯" },
-  { name: "浪潮", logo: "浪潮" },
+  "China Unicom", "Alibaba Cloud", "Huawei Cloud", "Baidu AI Cloud",
+  "Tencent Cloud", "Inspur", "China Telecom", "iFLYTEK",
+  "Hikvision", "Zhejiang Univ.", "H3C", "Yonyou",
+];
+
+const coopModes = [
+  { title: "Tech Partner", desc: "Joint R&D and open source contributions", color: "text-accent" },
+  { title: "Channel", desc: "Product distribution and market expansion", color: "text-success" },
+  { title: "Solution", desc: "Industry solution co-delivery", color: "text-syntax-function" },
+  { title: "Ecosystem", desc: "Open platform and standards", color: "text-warning" },
 ];
 
 export default function PartnerSection() {
   return (
-    <section id="partners" className="py-24 bg-deep relative">
-      <div className="absolute inset-0 bg-pixel-grid opacity-50" />
-
-      <div className="relative max-w-[1200px] mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
-          className="text-center mb-4"
-        >
-          <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-gold mb-3 tracking-widest">
-            &gt; PARTNERS_
+    <section id="partners" className="py-20 bg-bg-overlay relative">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <p className="ide-section-label">
+            {/* src/config/partners.config.ts */}
           </p>
-          <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
-            neon-magenta mb-4">
-            合作伙伴
+          <h2 className="ide-section-title">
+            export const partners: Partner[]
           </h2>
-          <p className="text-text-secondary max-w-[520px] mx-auto mb-14 text-sm">
-            <span className="text-neon-cyan">▸</span>{" "}
-            携手多家行业伙伴，共建分布式存算一体产业生态，赋能千行百业数字化转型
+          <p className="text-[13px] text-text-secondary font-mono max-w-[520px] mx-auto mb-12">
+            <span className="text-syntax-comment">// </span>
+            Building the distributed compute ecosystem with industry leaders
           </p>
-        </motion.div>
+        </div>
 
-        {/* Logo grid — pixel style */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-14">
+        {/* Logo grid — code imports style */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mb-12">
           {partners.map((p, i) => (
             <motion.div
-              key={p.name}
-              initial={{ opacity: 0, y: 12 }}
+              key={p}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.06 }}
-              className="flex items-center justify-center h-20 bg-card border border-border/30
-                hover:border-neon-cyan/40 hover:shadow-[0_0_15px_rgba(0,240,255,0.1)]
-                transition-all duration-300 group"
+              transition={{ duration: 0.2, delay: i * 0.03 }}
+              className="flex items-center justify-center py-4 px-2 border border-border-default
+                rounded-md bg-bg-base hover:border-accent/30 transition-all duration-300 group"
             >
-              <span className="font-[family-name:var(--font-press-start)] text-xs
-                text-text-muted group-hover:text-neon-cyan tracking-wider
-                transition-colors duration-300">
-                [{p.logo}]
+              <span className="font-mono text-[11px] text-text-muted group-hover:text-text-primary
+                transition-colors">
+                import &quot;{p}&quot;
               </span>
             </motion.div>
           ))}
         </div>
 
         {/* Cooperation modes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { title: "技术合作", desc: "联合研发与代码贡献", color: "neon-cyan" },
-            { title: "渠道代理", desc: "产品分销与市场拓展", color: "neon-magenta" },
-            { title: "解决方案", desc: "行业方案联合交付", color: "neon-purple" },
-            { title: "生态共建", desc: "开放平台与标准制定", color: "neon-gold" },
-          ].map((item, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          {coopModes.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.08 }}
-              className={`isometric p-6 bg-card border border-${item.color}/20
-                hover:border-${item.color}/40 hover:shadow-[0_0_15px_var(--color-${item.color})/0.1]
-                text-center transition-all duration-300`}
+              transition={{ duration: 0.3, delay: i * 0.06 }}
+              className="p-5 border border-border-default rounded-lg bg-bg-base text-center
+                hover:border-accent/20 transition-all duration-300"
             >
-              <span className={`font-[family-name:var(--font-vt323)] text-lg text-${item.color}
-                tracking-widest block mb-3`}>
-                &gt; {String(i + 1).padStart(2, "0")}
+              <span className="font-mono text-2xl text-text-muted block mb-2">
+                {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="font-[family-name:var(--font-press-start)] text-xs tracking-wider
-                text-text-primary mb-3">
+              <h3 className={`font-mono text-[12px] font-bold ${item.color} mb-2`}>
                 {item.title}
               </h3>
-              <p className="text-sm text-text-secondary">{item.desc}</p>
+              <p className="text-[11px] text-text-muted font-mono">{item.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.3 }}
-          className="text-center mt-12"
-        >
+        <div className="text-center">
           <Link
             href="/partners"
-            className="inline-flex items-center gap-1.5 text-xs
-              font-[family-name:var(--font-press-start)] tracking-wider
-              neon-cyan hover:drop-shadow-[0_0_10px_#00F0FF] transition-all duration-200"
+            className="inline-flex items-center gap-1.5 text-[11px] font-mono
+              text-text-link hover:underline transition-all"
           >
-            [了解更多合作模式]
+            view all partners
             <ArrowRight size={12} />
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
