@@ -15,8 +15,10 @@ const partners = [
 
 export default function PartnerSection() {
   return (
-    <section id="partners" className="py-20 bg-[#F6F6F6]">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="partners" className="py-24 bg-deep relative">
+      <div className="absolute inset-0 bg-pixel-grid opacity-50" />
+
+      <div className="relative max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -24,16 +26,21 @@ export default function PartnerSection() {
           transition={{ duration: 0.3 }}
           className="text-center mb-4"
         >
-          <h2 className="text-[28px] font-semibold text-[#1A1A2E] mb-3">
+          <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-gold mb-3 tracking-widest">
+            &gt; PARTNERS_
+          </p>
+          <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
+            neon-magenta mb-4">
             合作伙伴
           </h2>
-          <p className="text-[#4A4A5E] max-w-[520px] mx-auto mb-12">
+          <p className="text-text-secondary max-w-[520px] mx-auto mb-14 text-sm">
+            <span className="text-neon-cyan">▸</span>{" "}
             携手多家行业伙伴，共建分布式存算一体产业生态，赋能千行百业数字化转型
           </p>
         </motion.div>
 
-        {/* Logo grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-12">
+        {/* Logo grid — pixel style */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-14">
           {partners.map((p, i) => (
             <motion.div
               key={p.name}
@@ -41,9 +48,15 @@ export default function PartnerSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: i * 0.06 }}
-              className="flex items-center justify-center h-20 rounded-xl border border-black/5 bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-all duration-200"
+              className="flex items-center justify-center h-20 bg-card border border-border/30
+                hover:border-neon-cyan/40 hover:shadow-[0_0_15px_rgba(0,240,255,0.1)]
+                transition-all duration-300 group"
             >
-              <span className="text-sm font-medium text-[#8E8E9A]">{p.logo}</span>
+              <span className="font-[family-name:var(--font-press-start)] text-xs
+                text-text-muted group-hover:text-neon-cyan tracking-wider
+                transition-colors duration-300">
+                [{p.logo}]
+              </span>
             </motion.div>
           ))}
         </div>
@@ -51,10 +64,10 @@ export default function PartnerSection() {
         {/* Cooperation modes */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { title: "技术合作", desc: "联合研发与代码贡献" },
-            { title: "渠道代理", desc: "产品分销与市场拓展" },
-            { title: "解决方案", desc: "行业方案联合交付" },
-            { title: "生态共建", desc: "开放平台与标准制定" },
+            { title: "技术合作", desc: "联合研发与代码贡献", color: "neon-cyan" },
+            { title: "渠道代理", desc: "产品分销与市场拓展", color: "neon-magenta" },
+            { title: "解决方案", desc: "行业方案联合交付", color: "neon-purple" },
+            { title: "生态共建", desc: "开放平台与标准制定", color: "neon-gold" },
           ].map((item, i) => (
             <motion.div
               key={item.title}
@@ -62,10 +75,19 @@ export default function PartnerSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: i * 0.08 }}
-              className="p-6 rounded-xl border border-black/5 bg-white text-center"
+              className={`isometric p-6 bg-card border border-${item.color}/20
+                hover:border-${item.color}/40 hover:shadow-[0_0_15px_var(--color-${item.color})/0.1]
+                text-center transition-all duration-300`}
             >
-              <h3 className="font-semibold text-[#1A1A2E] mb-2">{item.title}</h3>
-              <p className="text-sm text-[#4A4A5E]">{item.desc}</p>
+              <span className={`font-[family-name:var(--font-vt323)] text-lg text-${item.color}
+                tracking-widest block mb-3`}>
+                &gt; {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="font-[family-name:var(--font-press-start)] text-xs tracking-wider
+                text-text-primary mb-3">
+                {item.title}
+              </h3>
+              <p className="text-sm text-text-secondary">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -75,14 +97,16 @@ export default function PartnerSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: 0.3 }}
-          className="text-center mt-10"
+          className="text-center mt-12"
         >
           <Link
             href="/partners"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#2D5BFF] hover:text-[#1E40D8] transition-colors duration-150"
+            className="inline-flex items-center gap-1.5 text-xs
+              font-[family-name:var(--font-press-start)] tracking-wider
+              neon-cyan hover:drop-shadow-[0_0_10px_#00F0FF] transition-all duration-200"
           >
-            了解更多合作模式
-            <ArrowRight size={14} />
+            [了解更多合作模式]
+            <ArrowRight size={12} />
           </Link>
         </motion.div>
       </div>

@@ -12,51 +12,71 @@ function GPUCard({ gpu, index }: { gpu: GPUConfig; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.3, delay: index * 0.08 }}
-      className="group p-6 rounded-xl border border-black/5 bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-200"
+      className="group p-6 bg-card border border-border/40
+        hover:border-neon-cyan/40 hover:shadow-[0_0_20px_rgba(0,240,255,0.1)]
+        transition-all duration-300"
     >
-      <div className="flex items-start justify-between mb-4">
+      {/* Header */}
+      <div className="flex items-start justify-between mb-5">
         <div>
-          <h3 className="text-xl font-bold text-[#1A1A2E]">{gpu.name}</h3>
-          <p className="text-2xl font-bold text-[#2D5BFF] mt-1">
+          <h3 className="font-[family-name:var(--font-press-start)] text-sm tracking-wider
+            text-neon-cyan">
+            {gpu.name}
+          </h3>
+          <p className="font-[family-name:var(--font-vt323)] text-3xl neon-gold mt-2">
             {gpu.tflops.toLocaleString()}{" "}
-            <span className="text-sm font-normal text-[#8E8E9A]">TFLOPS</span>
+            <span className="text-base text-text-muted">TFLOPS</span>
           </p>
         </div>
         {gpu.available ? (
-          <span className="text-xs px-2 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] font-medium">
-            可预约
+          <span className="text-[10px] px-3 py-1 bg-neon-green/10 border border-neon-green/30
+            text-neon-green font-[family-name:var(--font-press-start)] tracking-wider">
+            ● 可预约
           </span>
         ) : (
-          <span className="text-xs px-2 py-1 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] font-medium">
-            即将上线
+          <span className="text-[10px] px-3 py-1 bg-neon-gold/10 border border-neon-gold/30
+            text-neon-gold font-[family-name:var(--font-press-start)] tracking-wider">
+            ◌ 即将上线
           </span>
         )}
       </div>
 
-      <div className="space-y-2 mb-5 text-sm text-[#4A4A5E]">
-        <div className="flex items-center gap-2">
-          <Cpu size={14} className="text-[#8E8E9A] shrink-0" />
-          <span className="truncate">{gpu.cpu}</span>
+      {/* Specs — terminal style */}
+      <div className="space-y-2.5 mb-6 p-4 bg-abyss/50 border border-border/20">
+        <div className="flex items-center gap-2 text-xs">
+          <Cpu size={13} className="text-neon-cyan/60 shrink-0" />
+          <span className="text-text-muted font-[family-name:var(--font-vt323)]">CPU:</span>
+          <span className="text-text-secondary font-[family-name:var(--font-vt323)] truncate text-xs">
+            {gpu.cpu}
+          </span>
         </div>
-        <div className="flex items-center gap-2">
-          <MemoryStick size={14} className="text-[#8E8E9A] shrink-0" />
-          <span className="truncate">{gpu.memory}</span>
+        <div className="flex items-center gap-2 text-xs">
+          <MemoryStick size={13} className="text-neon-purple/60 shrink-0" />
+          <span className="text-text-muted font-[family-name:var(--font-vt323)]">RAM:</span>
+          <span className="text-text-secondary font-[family-name:var(--font-vt323)] truncate text-xs">
+            {gpu.memory}
+          </span>
         </div>
-        <div className="flex items-center gap-2">
-          <HardDrive size={14} className="text-[#8E8E9A] shrink-0" />
-          <span className="truncate">{gpu.storage}</span>
+        <div className="flex items-center gap-2 text-xs">
+          <HardDrive size={13} className="text-neon-gold/60 shrink-0" />
+          <span className="text-text-muted font-[family-name:var(--font-vt323)]">SSD:</span>
+          <span className="text-text-secondary font-[family-name:var(--font-vt323)] truncate text-xs">
+            {gpu.storage}
+          </span>
         </div>
       </div>
 
+      {/* Action */}
       <Link
         href="#"
-        className={`inline-flex w-full justify-center py-2.5 rounded-md text-sm font-medium transition-all duration-150 ${
-          gpu.available
-            ? "bg-[#2D5BFF] text-white hover:bg-[#1E40D8] active:scale-[0.98]"
-            : "bg-[#F6F6F6] text-[#8E8E9A] cursor-not-allowed"
-        }`}
+        className={`pixel-btn inline-flex w-full justify-center py-3 text-xs font-bold
+          font-[family-name:var(--font-press-start)] tracking-wider transition-all duration-200 ${
+            gpu.available
+              ? "bg-neon-cyan text-abyss hover:shadow-[0_0_25px_rgba(0,240,255,0.5)]"
+              : "bg-surface text-text-muted cursor-not-allowed"
+          }`}
       >
-        {gpu.available ? "立即预约" : "敬请期待"}
+        {gpu.available ? "▶ 立即预约" : "⌛ 敬请期待"}
       </Link>
     </motion.div>
   );
@@ -64,19 +84,26 @@ function GPUCard({ gpu, index }: { gpu: GPUConfig; index: number }) {
 
 export default function GPUSection() {
   return (
-    <section id="gpu" className="py-20 bg-[#F6F6F6]">
-      <div className="max-w-[1200px] mx-auto px-6">
+    <section id="gpu" className="py-24 bg-void relative">
+      <div className="absolute inset-0 bg-pixel-grid-large opacity-30" />
+
+      <div className="relative max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <h2 className="text-[28px] font-semibold text-[#1A1A2E] mb-4">
+          <p className="font-[family-name:var(--font-vt323)] text-lg text-neon-magenta mb-3 tracking-widest">
+            &gt; GPU_CLUSTER_
+          </p>
+          <h2 className="font-[family-name:var(--font-press-start)] text-2xl tracking-wider
+            neon-cyan mb-4">
             算力集群
           </h2>
-          <p className="text-[#4A4A5E] max-w-[480px] mx-auto">
+          <p className="text-text-secondary max-w-[480px] mx-auto text-sm">
+            <span className="text-neon-purple">▸</span>{" "}
             NVIDIA / 昇腾多型号 GPU，满足大模型训练与高并发推理需求
           </p>
         </motion.div>

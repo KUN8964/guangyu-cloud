@@ -1,16 +1,10 @@
 import Link from "next/link";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, Zap } from "lucide-react";
 
 const footerLinks = [
   {
     title: "产品与服务",
-    links: [
-      "智能边缘服务器",
-      "分布式云存储",
-      "分布式算力",
-      "AI 知识库",
-      "企业云盘",
-    ],
+    links: ["智能边缘服务器", "分布式云存储", "分布式算力", "AI 知识库", "企业云盘"],
   },
   {
     title: "解决方案",
@@ -24,28 +18,32 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F172A] text-white">
+    <footer className="bg-abyss border-t border-border/40">
       <div className="max-w-[1200px] mx-auto px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {/* Contact */}
+          {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-[#2D5BFF] flex items-center justify-center">
-                <span className="text-white font-bold text-sm">光</span>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 bg-neon-cyan pixel-border-cyan flex items-center justify-center">
+                <Zap size={16} className="text-abyss" />
               </div>
-              <span className="font-semibold text-white text-lg">光宇云</span>
+              <span className="font-[family-name:var(--font-press-start)] text-sm neon-cyan tracking-wider">
+                光宇云
+              </span>
             </div>
-            <p className="text-sm text-white/60 mb-4 leading-relaxed">
+
+            <p className="text-sm text-text-muted mb-5 leading-relaxed">
               全球领先的 Web3.0 分布式存算网络服务商
             </p>
-            <div className="space-y-2 text-sm text-white/60">
-              <div className="flex items-center gap-2">
+
+            <div className="space-y-3 text-sm text-text-muted font-[family-name:var(--font-vt323)] tracking-wider">
+              <div className="flex items-center gap-2 hover:text-neon-cyan transition-colors duration-200 cursor-pointer">
                 <Phone size={14} />
-                <span>联系我们</span>
+                <span>&gt; 联系我们</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 hover:text-neon-purple transition-colors duration-200 cursor-pointer">
                 <Mail size={14} />
-                <span>关注光宇云公众号</span>
+                <span>&gt; 关注公众号</span>
               </div>
             </div>
           </div>
@@ -53,17 +51,20 @@ export default function Footer() {
           {/* Link columns */}
           {footerLinks.map((col) => (
             <div key={col.title}>
-              <h4 className="text-sm font-semibold text-white mb-3">
-                {col.title}
+              <h4 className="font-[family-name:var(--font-press-start)] text-[10px] tracking-wider
+                text-neon-cyan mb-4">
+                [{col.title}]
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link}>
                     <Link
                       href="#"
-                      className="text-sm text-white/50 hover:text-white/80 transition-colors duration-150"
+                      className="text-sm text-text-muted hover:text-neon-purple
+                        font-[family-name:var(--font-vt323)] tracking-wider
+                        transition-colors duration-150"
                     >
-                      {link}
+                      &gt; {link}
                     </Link>
                   </li>
                 ))}
@@ -72,12 +73,15 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* ICP */}
-        <div className="mt-12 pt-8 border-t border-white/10">
-          <p className="text-xs text-white/30 text-center leading-relaxed">
+        {/* Bottom bar */}
+        <div className="mt-14 pt-8 border-t border-border/30">
+          <p className="text-[10px] text-text-muted text-center leading-relaxed
+            font-[family-name:var(--font-vt323)] tracking-wider">
             浙 ICP 备 2025184107 号 - 1 浙公网安备 33010202005126 号
             <br />
-            Copyright &copy; 2025 光宇云计算科技有限公司
+            <span className="text-neon-cyan/50">
+              &copy; 2025 光宇云计算科技有限公司 | GUANGYU CLOUD COMPUTING TECHNOLOGY CO., LTD.
+            </span>
           </p>
         </div>
       </div>

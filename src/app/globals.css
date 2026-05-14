@@ -1,47 +1,333 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ═══════════════════════════════════════════
+   光宇云 V2 — Mosaic Retro / Synthwave Theme
+   Design Tokens & Pixel Art Utilities
+   ═══════════════════════════════════════════ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* ── Brand / Synthwave Palette ── */
+  --color-neon-cyan: #00F0FF;
+  --color-neon-magenta: #FF2D95;
+  --color-neon-purple: #B44CFF;
+  --color-neon-gold: #FFD700;
+  --color-neon-green: #39FF14;
+
+  /* ── Background Layers ── */
+  --color-abyss: #06060E;
+  --color-void: #0A0A16;
+  --color-deep: #0D0D1F;
+  --color-surface: #12122A;
+  --color-card: #18183A;
+  --color-border: #252550;
+  --color-border-glow: #3A3A70;
+
+  /* ── Text ── */
+  --color-text-primary: #E8E8F8;
+  --color-text-secondary: #9090B8;
+  --color-text-muted: #585880;
+
+  /* ── Font Stacks ── */
+  --font-pixel: var(--font-press-start);
+  --font-mono: var(--font-vt323);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ═══════════════════════════════════════════
+   Base / Body
+   ═══════════════════════════════════════════ */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #252550 #0A0A16;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-abyss);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
-/* Mobile nav drawer animation */
-@keyframes slide-in-right {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+/* ═══════════════════════════════════════════
+   CRT Scanline Overlay (subtle)
+   ═══════════════════════════════════════════ */
+
+.scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
 }
 
-.animate-slide-in-right {
-  animation: slide-in-right 250ms ease-out;
+/* ═══════════════════════════════════════════
+   Pixel Art Borders — box-shadow technique
+   ═══════════════════════════════════════════ */
+
+.pixel-border {
+  box-shadow:
+    4px 0 0 var(--color-border-glow),
+    -4px 0 0 var(--color-border-glow),
+    0 4px 0 var(--color-border-glow),
+    0 -4px 0 var(--color-border-glow);
 }
 
-/* Reduced motion */
+.pixel-border-cyan {
+  box-shadow:
+    4px 0 0 #00F0FF,
+    -4px 0 0 #00F0FF,
+    0 4px 0 #00F0FF,
+    0 -4px 0 #00F0FF;
+}
+
+.pixel-border-magenta {
+  box-shadow:
+    4px 0 0 #FF2D95,
+    -4px 0 0 #FF2D95,
+    0 4px 0 #FF2D95,
+    0 -4px 0 #FF2D95;
+}
+
+.pixel-border-purple {
+  box-shadow:
+    4px 0 0 #B44CFF,
+    -4px 0 0 #B44CFF,
+    0 4px 0 #B44CFF,
+    0 -4px 0 #B44CFF;
+}
+
+.pixel-border-gold {
+  box-shadow:
+    4px 0 0 #FFD700,
+    -4px 0 0 #FFD700,
+    0 4px 0 #FFD700,
+    0 -4px 0 #FFD700;
+}
+
+/* Inset pixel border variant */
+.pixel-border-inset {
+  box-shadow:
+    inset 4px 0 0 var(--color-border-glow),
+    inset -4px 0 0 var(--color-border-glow),
+    inset 0 4px 0 var(--color-border-glow),
+    inset 0 -4px 0 var(--color-border-glow);
+}
+
+/* ═══════════════════════════════════════════
+   Neon Glow Effects
+   ═══════════════════════════════════════════ */
+
+.neon-cyan {
+  color: #00F0FF;
+  text-shadow:
+    0 0 7px #00F0FF,
+    0 0 20px #00F0FF,
+    0 0 40px #00A0CC;
+}
+
+.neon-magenta {
+  color: #FF2D95;
+  text-shadow:
+    0 0 7px #FF2D95,
+    0 0 20px #FF2D95,
+    0 0 40px #CC0066;
+}
+
+.neon-purple {
+  color: #B44CFF;
+  text-shadow:
+    0 0 7px #B44CFF,
+    0 0 20px #B44CFF,
+    0 0 40px #7B2FFF;
+}
+
+.neon-gold {
+  color: #FFD700;
+  text-shadow:
+    0 0 7px #FFD700,
+    0 0 20px #FFA500,
+    0 0 40px #FF8C00;
+}
+
+/* Box neon glow */
+.neon-box-cyan {
+  box-shadow:
+    0 0 10px rgba(0, 240, 255, 0.3),
+    0 0 30px rgba(0, 240, 255, 0.1),
+    inset 0 0 10px rgba(0, 240, 255, 0.05);
+}
+
+.neon-box-magenta {
+  box-shadow:
+    0 0 10px rgba(255, 45, 149, 0.3),
+    0 0 30px rgba(255, 45, 149, 0.1),
+    inset 0 0 10px rgba(255, 45, 149, 0.05);
+}
+
+.neon-box-purple {
+  box-shadow:
+    0 0 10px rgba(180, 76, 255, 0.3),
+    0 0 30px rgba(180, 76, 255, 0.1),
+    inset 0 0 10px rgba(180, 76, 255, 0.05);
+}
+
+/* ═══════════════════════════════════════════
+   Pixel Art Background Grid
+   ═══════════════════════════════════════════ */
+
+.bg-pixel-grid {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.bg-pixel-grid-large {
+  background-image:
+    linear-gradient(rgba(180, 76, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 76, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ═══════════════════════════════════════════
+   Isometric Perspective Cards
+   ═══════════════════════════════════════════ */
+
+.isometric {
+  transform:
+    perspective(800px)
+    rotateX(5deg)
+    rotateY(-5deg);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.isometric:hover {
+  transform:
+    perspective(800px)
+    rotateX(2deg)
+    rotateY(-2deg)
+    translateY(-6px)
+    scale(1.02);
+}
+
+/* ═══════════════════════════════════════════
+   Pixelated Image Rendering
+   ═══════════════════════════════════════════ */
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ═══════════════════════════════════════════
+   Retro Section Dividers
+   ═══════════════════════════════════════════ */
+
+.section-divider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #00F0FF,
+    #B44CFF,
+    #FF2D95,
+    transparent
+  );
+}
+
+/* ═══════════════════════════════════════════
+   Pixel Button
+   ═══════════════════════════════════════════ */
+
+.pixel-btn {
+  position: relative;
+  transition: all 0.1s ease;
+}
+.pixel-btn::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  right: -4px;
+  bottom: -4px;
+  z-index: -1;
+  border: 2px solid currentColor;
+  transition: all 0.1s ease;
+}
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+}
+.pixel-btn:active::after {
+  transform: translate(-2px, -2px);
+}
+
+/* ═══════════════════════════════════════════
+   Terminal / Matrix text effect
+   ═══════════════════════════════════════════ */
+
+.terminal-text {
+  font-family: var(--font-mono);
+  color: #39FF14;
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+}
+
+.terminal-cursor::after {
+  content: "▌";
+  animation: blink 1s step-end infinite;
+  color: #39FF14;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   Data Dashboard Mockup Styling
+   ═══════════════════════════════════════════ */
+
+.dashboard-card {
+  background: linear-gradient(135deg, #12122A 0%, #18183A 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+}
+
+.dashboard-bar {
+  height: 8px;
+  border-radius: 0;
+  image-rendering: pixelated;
+}
+
+/* ═══════════════════════════════════════════
+   Glitch hover effect
+   ═══════════════════════════════════════════ */
+
+.glitch-hover:hover {
+  animation: glitch 0.3s ease;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* ═══════════════════════════════════════════
+   Reduced Motion
+   ═══════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -49,5 +335,8 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .glitch-hover:hover {
+    animation: none;
   }
 }
