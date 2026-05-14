@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Phone, Mail, Zap } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
+import { LightningLogoPixel } from "@/components/ProductPixels";
 
 const footerLinks = [
   {
@@ -24,9 +25,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-9 h-9 bg-neon-cyan pixel-border-cyan flex items-center justify-center">
-                <Zap size={16} className="text-abyss" />
-              </div>
+              <LightningLogoPixel size={36} />
               <span className="font-[family-name:var(--font-press-start)] text-sm neon-cyan tracking-wider">
                 光宇云
               </span>

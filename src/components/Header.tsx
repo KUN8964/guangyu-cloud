@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronRight, Zap } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { LightningLogoPixel } from "@/components/ProductPixels";
 
 const navLinks = [
-  { label: "产品", href: "#products" },
-  { label: "解决方案", href: "#solutions" },
-  { label: "算力集群", href: "#gpu" },
-  { label: "AI 模型", href: "#models" },
-  { label: "合作伙伴", href: "#partners" },
+  { label: "产品", href: "/#products" },
+  { label: "解决方案", href: "/#solutions" },
+  { label: "算力集群", href: "/#gpu" },
+  { label: "AI 模型", href: "/#models" },
+  { label: "合作伙伴", href: "/partners" },
 ];
 
 export default function Header() {
@@ -31,14 +32,9 @@ export default function Header() {
       }`}
     >
       <nav className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo — pixel-style */}
+        {/* Logo — pixel lightning bolt */}
         <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="relative">
-            <div className="w-9 h-9 bg-neon-cyan pixel-border-cyan flex items-center justify-center
-              group-hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] transition-shadow duration-300">
-              <Zap size={16} className="text-abyss" />
-            </div>
-          </div>
+          <LightningLogoPixel size={36} className="group-hover:drop-shadow-[0_0_15px_rgba(0,240,255,0.6)] transition-all duration-300" />
           <span
             className="font-[family-name:var(--font-press-start)] text-sm neon-cyan tracking-wider"
           >

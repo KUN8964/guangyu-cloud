@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { products, type Product } from "@/data/products";
+import { productPixels } from "@/components/ProductPixels";
 
 const accentColors = [
   { border: "border-neon-cyan/30", glow: "neon-box-cyan", link: "neon-cyan" },
@@ -15,6 +16,7 @@ const accentColors = [
 
 function ProductCard({ product, index }: { product: Product; index: number }) {
   const acc = accentColors[index % accentColors.length];
+  const PixelArt = productPixels[product.id];
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,6 +26,13 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       className={`group isometric p-8 bg-card border ${acc.border} ${acc.glow}
         hover:translate-y-[-4px] hover:scale-[1.02] transition-all duration-300`}
     >
+      {/* Pixel art illustration */}
+      {PixelArt && (
+        <div className="flex justify-center mb-5">
+          <PixelArt size={96} className="drop-shadow-[0_0_12px_currentColor]" />
+        </div>
+      )}
+
       {/* Subtitle */}
       <p className="font-[family-name:var(--font-vt323)] text-base text-text-muted mb-2 tracking-wide">
         &gt; {product.subtitle}
