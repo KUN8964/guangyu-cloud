@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { products, type Product } from "@/data/products";
+import SpotlightCard from "./SpotlightCard";
 
 const accentColors = [
   "text-accent border-accent/20",
@@ -25,6 +26,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         hover:border-border-accent/20 hover:shadow-[0_0_20px_rgba(0,122,204,0.06)]
         transition-all duration-300"
     >
+      <SpotlightCard className="rounded-lg -m-5 p-5">
       {/* File name — IDE tab style */}
       <div className="flex items-center gap-2 mb-3">
         <span className="text-[10px] text-text-muted font-mono">
@@ -63,6 +65,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         open {product.id}.tsx
         <ArrowRight size={12} />
       </Link>
+      </SpotlightCard>
     </motion.div>
   );
 }

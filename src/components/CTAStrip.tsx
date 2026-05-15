@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
+import Reveal from "./Reveal";
 
 export default function CTAStrip() {
   return (
@@ -16,13 +16,7 @@ export default function CTAStrip() {
       />
 
       <div className="relative max-w-6xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
-        >
-          {/* Terminal prompt */}
+        <Reveal>
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-2
             border border-border-default rounded-md bg-bg-overlay">
             <span className="w-2 h-2 rounded-full bg-success" />
@@ -48,7 +42,7 @@ export default function CTAStrip() {
             <span className="text-[10px] text-white/60">$</span>
             ./deploy --free-trial
           </Link>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Cpu, MemoryStick, HardDrive, ArrowRight } from "lucide-react";
 import { gpuConfigs, type GPUConfig } from "@/data/gpu";
+import SpotlightCard from "./SpotlightCard";
 
 function GPUCard({ gpu, index }: { gpu: GPUConfig; index: number }) {
   return (
@@ -15,6 +16,7 @@ function GPUCard({ gpu, index }: { gpu: GPUConfig; index: number }) {
       className="p-5 border border-border-default rounded-lg bg-bg-base
         hover:border-accent/20 transition-all duration-300"
     >
+      <SpotlightCard className="rounded-lg -m-5 p-5">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -69,6 +71,7 @@ function GPUCard({ gpu, index }: { gpu: GPUConfig; index: number }) {
       >
         {gpu.available ? "$ deploy --gpu" : "// coming soon"}
       </Link>
+      </SpotlightCard>
     </motion.div>
   );
 }
