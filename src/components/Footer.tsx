@@ -23,9 +23,9 @@ const footerCols = [
   {
     title: "Support",
     links: [
-      { label: "docs.md", href: "#" },
-      { label: "support.md", href: "#" },
-      { label: "pricing.tsx", href: "#" },
+      { label: "docs.md", href: "/support" },
+      { label: "support.md", href: "/support" },
+      { label: "pricing.tsx", href: "/support" },
     ],
   },
 ];

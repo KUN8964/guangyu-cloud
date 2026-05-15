@@ -53,7 +53,7 @@ export default function SolutionDetailClient({
               📄 src/solutions/{solution.id}.tsx
             </p>
             <h1 className="font-mono text-[26px] font-bold text-text-primary mb-3 tracking-tight">
-              {solution.name} Solution
+              {solution.name}解决方案
             </h1>
             <p className="text-[13px] text-text-secondary font-mono max-w-[560px] mb-8">
               <span className="text-syntax-comment">/** </span>
@@ -78,7 +78,7 @@ export default function SolutionDetailClient({
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10">
             <p className="ide-section-label">type PainPoint</p>
-            <h2 className="ide-section-title">Industry Pain Points</h2>
+            <h2 className="ide-section-title">行业痛点</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -113,7 +113,7 @@ export default function SolutionDetailClient({
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10">
             <p className="ide-section-label">class Architecture</p>
-            <h2 className="ide-section-title">Solution Architecture</h2>
+            <h2 className="ide-section-title">方案架构</h2>
           </div>
 
           <div className="max-w-[700px] mx-auto">
@@ -149,7 +149,7 @@ export default function SolutionDetailClient({
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10">
             <p className="ide-section-label">interface Advantages</p>
-            <h2 className="ide-section-title">Core Advantages</h2>
+            <h2 className="ide-section-title">核心优势</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -193,15 +193,15 @@ export default function SolutionDetailClient({
             </div>
 
             <h2 className="font-mono text-xl font-bold text-text-primary mb-3">
-              Start your {solution.name} transformation
+              立即体验我们的云服务
             </h2>
             <p className="text-[12px] text-text-secondary font-mono mb-6">
               <span className="text-syntax-comment"># </span>
-              Schedule a demo for a customized solution
+              注册即可获得免费试用额度，无需信用卡
             </p>
 
             <Link href="/register" className="btn-primary text-[12px] !py-2.5 !px-8">
-              $ schedule --demo
+              免费试用
             </Link>
           </motion.div>
         </div>
@@ -212,7 +212,7 @@ export default function SolutionDetailClient({
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10 text-center">
             <p className="ide-section-label">import related</p>
-            <h2 className="ide-section-title">Other Solutions</h2>
+            <h2 className="ide-section-title">其他解决方案</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-[700px] mx-auto">

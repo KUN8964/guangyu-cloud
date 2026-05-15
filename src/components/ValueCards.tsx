@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const values = [
-  { icon: "🔒", key: "secure", title: "More Secure", desc: "Anti single-point failure. Reduce attack and fault impact." },
-  { icon: "✓", key: "trusted", title: "More Trusted", desc: "Immutable data. Trust based on rules, not institutions." },
-  { icon: "⬇", key: "economical", title: "More Economical", desc: "Lower hardware & ops cost. Optimize resource utilization." },
-  { icon: "⚡", key: "efficient", title: "More Efficient", desc: "Higher throughput, parallel processing, better resource usage." },
+  { icon: "⚡", key: "efficient", title: "更高效", desc: "提高响应速度、并行处理能力与资源利用率" },
+  { icon: "💰", key: "economical", title: "更经济", desc: "降低硬件投入与运维成本，优化资源利用率" },
+  { icon: "🔒", key: "trusted", title: "更可信", desc: "数据不可篡改，信任基于规则而非单一机构" },
+  { icon: "🛡️", key: "secure", title: "更安全", desc: "抗单点风险，降低攻击与故障影响" },
 ];
 
 export default function ValueCards() {
@@ -19,11 +19,11 @@ export default function ValueCards() {
             {/* src/components/ValueCards.tsx */}
           </p>
           <h2 className="ide-section-title">
-            export const values: Value[]
+            whyChooseGuangyu()
           </h2>
           <p className="text-[13px] text-text-secondary font-mono">
             <span className="text-syntax-comment">// </span>
-            Four core principles of the distributed network
+            分布式网络四大核心优势
           </p>
         </div>
 

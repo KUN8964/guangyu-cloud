@@ -45,35 +45,23 @@ export default function Hero() {
             </div>
 
             <h1 className="font-mono text-[32px] leading-[1.3] font-bold mb-4 tracking-tight">
-              <span className="text-text-primary">Web3.0</span>
-              <br />
-              <span className="text-accent">Distributed Storage</span>
-              <br />
-              <span className="text-text-secondary">& Compute Network</span>
+              <span className="text-accent">企业级</span>
+              <span className="text-text-primary">云存储解决方案</span>
             </h1>
 
-            <div className="space-y-2 mb-10">
-              {[
-                { icon: "▶", text: "Massive distributed node architecture", color: "text-success" },
-                { icon: "●", text: "High security · High availability · Low cost", color: "text-accent" },
-                { icon: "■", text: "Edge AI inference — latency < 50ms", color: "text-warning" },
-              ].map((item) => (
-                <p key={item.text} className="text-[13px] text-text-secondary font-mono leading-relaxed">
-                  <span className={item.color}>{item.icon}</span>{" "}
-                  {item.text}
-                </p>
-              ))}
-            </div>
+            <p className="text-[13px] text-text-secondary font-mono leading-relaxed mb-10">
+              安全可靠的数据存储服务，助力企业数字化转型
+            </p>
 
             <div className="flex flex-wrap gap-3">
               <Link href="/register" className="btn-primary">
                 <span className="text-[10px] text-white/60">$</span>
-                ./deploy --now
+                立即体验
                 <ArrowRight size={14} />
               </Link>
-              <Link href="#products" className="btn-secondary">
+              <Link href="#values" className="btn-secondary">
                 <span className="text-[10px] text-text-muted">$</span>
-                cat README.md
+                了解更多
               </Link>
             </div>
 

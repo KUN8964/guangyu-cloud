@@ -21,24 +21,24 @@ const partners = [
 
 const coopModes = [
   {
-    title: "Tech Partner",
-    desc: "Joint R&D and open source contributions. Algorithm optimization, system architecture design, standards development.",
-    tags: ["R&D", "Open Source", "Standards", "Papers"],
+    title: "核心技术",
+    desc: "聚焦分布式存算核心技术领域，汇聚深度产品研发、技术适配与集成实施的核心伙伴，共同打造行业领先的技术解决方案。",
+    tags: ["R&D", "技术适配", "集成实施", "标准共建"],
   },
   {
-    title: "Channel",
-    desc: "Product distribution and market expansion. Training, technical support, and marketing materials provided.",
-    tags: ["Exclusive", "Commission", "Pre-sales", "Marketing"],
+    title: "云服务与渠道代理商",
+    desc: "覆盖云服务代理、软件分销、渠道拓展等全链路合作，依托双方渠道资源，实现产品全国化覆盖与高效交付。",
+    tags: ["云代理", "分销", "渠道拓展", "全国覆盖"],
   },
   {
-    title: "Solution Partner",
-    desc: "Industry solution co-delivery. Integrate Guangyu Cloud capabilities into your solutions.",
-    tags: ["Co-creation", "Delivery", "Custom", "Support"],
+    title: "基础设施与公共事业",
+    desc: "联合硬件代理、弱电工程、政府及公共事业等机构，共建基础设施服务与行业解决方案，拓展政企及公共领域合作版图。",
+    tags: ["硬件代理", "弱电工程", "政企合作", "公共事业"],
   },
   {
-    title: "Ecosystem",
-    desc: "Open platform and industry ecosystem. Build on our APIs and SDKs across 1000+ edge nodes.",
-    tags: ["API/SDK", "Marketplace", "Branding", "Alliance"],
+    title: "企业软件与方案服务商",
+    desc: "整合 ERP、OA、CRM、财务、低代码等企业级软件服务商，通过方案集成与联合实施，助力企业全场景数字化转型。",
+    tags: ["ERP/OA", "CRM", "低代码", "方案集成"],
   },
 ];
 
@@ -57,11 +57,11 @@ export default function PartnersClient() {
               📄 src/config/partners.config.ts
             </p>
             <h1 className="font-mono text-[26px] font-bold text-text-primary mb-3 tracking-tight">
-              export const partners
+              开放合作 · 共赢未来 · 生态赋能
             </h1>
-            <p className="text-[13px] text-text-secondary font-mono max-w-[480px] mx-auto mb-2">
+            <p className="text-[13px] text-text-secondary font-mono max-w-[520px] mx-auto mb-2">
               <span className="text-syntax-comment">// </span>
-              Building the distributed compute ecosystem with industry leaders
+              携手多家行业伙伴，共建分布式存算一体产业生态，赋能千行百业数字化转型
             </p>
             <p className="text-[11px] text-text-muted font-mono mb-8">
               Telecom · Cloud · AI · Hardware · Academia
@@ -79,7 +79,7 @@ export default function PartnersClient() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10">
             <p className="ide-section-label">const partners: Partner[]</p>
-            <h2 className="ide-section-title">Partner Directory</h2>
+            <h2 className="ide-section-title">合作伙伴</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
@@ -116,7 +116,7 @@ export default function PartnersClient() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10 text-center">
             <p className="ide-section-label">enum CooperationMode</p>
-            <h2 className="ide-section-title">Cooperation Modes</h2>
+            <h2 className="ide-section-title">合作模式</h2>
             <p className="text-[12px] text-text-secondary font-mono">
               <span className="text-syntax-comment">// </span>
               Four flexible modes for partners at any stage
@@ -159,15 +159,15 @@ export default function PartnersClient() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10 text-center">
             <p className="ide-section-label">interface PartnerBenefits</p>
-            <h2 className="ide-section-title">Why Join</h2>
+            <h2 className="ide-section-title">合作权益</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { num: "01", title: "Technology", desc: "Access cutting-edge distributed compute tech, priority R&D access" },
-              { num: "02", title: "Revenue", desc: "Tiered commission + co-marketing, shared customer resources" },
-              { num: "03", title: "Branding", desc: "Website listing + joint events + industry whitepapers" },
-              { num: "04", title: "Network", desc: "1000+ edge nodes network effect + alliance resources" },
+              { num: "01", title: "技术支持", desc: "获取前沿分布式存算技术，优先研发接入" },
+              { num: "02", title: "商业收益", desc: "阶梯佣金 + 联合营销，共享客户资源" },
+              { num: "03", title: "品牌赋能", desc: "官网展示 + 联合活动 + 行业白皮书" },
+              { num: "04", title: "生态网络", desc: "1000+ 边缘节点网络效应 + 联盟资源" },
             ].map((item, i) => (
               <motion.div
                 key={item.num}
@@ -210,16 +210,16 @@ export default function PartnersClient() {
             </div>
 
             <h2 className="font-mono text-xl font-bold text-text-primary mb-3">
-              Become a Guangyu Cloud Partner
+              立即体验我们的云服务
             </h2>
             <p className="text-[12px] text-text-secondary font-mono mb-6 max-w-[440px] mx-auto">
               <span className="text-syntax-comment"># </span>
-              Whether you&apos;re a tech vendor, channel partner, or solution integrator
+              注册即可获得免费试用额度，无需信用卡
             </p>
 
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/register" className="btn-primary text-[12px] !py-2.5 !px-8">
-                $ join --now
+                免费试用
               </Link>
               <Link href="/#solutions" className="btn-secondary text-[12px] !py-2.5 !px-8">
                 cat README.md

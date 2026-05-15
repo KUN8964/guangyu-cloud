@@ -100,8 +100,8 @@ export default function ProductDetailClient({
       <section id="features" className="py-16 bg-bg-overlay">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10">
-            <p className="ide-section-label">interface ProductFeatures</p>
-            <h2 className="ide-section-title">Core Capabilities</h2>
+            <p className="ide-section-label">interface ProductAdvantages</p>
+            <h2 className="ide-section-title">核心优势</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -133,8 +133,8 @@ export default function ProductDetailClient({
         <section className="py-16 bg-bg-base">
           <div className="max-w-6xl mx-auto px-6">
             <div className="mb-10">
-              <p className="ide-section-label">type SpecTable</p>
-              <h2 className="ide-section-title">Technical Specifications</h2>
+              <p className="ide-section-label">type CoreFunctions</p>
+              <h2 className="ide-section-title">核心功能</h2>
             </div>
 
             <div className="max-w-[700px] code-block">
@@ -162,8 +162,8 @@ export default function ProductDetailClient({
       <section className="py-16 bg-bg-overlay">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-10">
-            <p className="ide-section-label">enum UseCase</p>
-            <h2 className="ide-section-title">Use Cases</h2>
+            <p className="ide-section-label">enum ApplicationScenario</p>
+            <h2 className="ide-section-title">应用场景</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -206,15 +206,15 @@ export default function ProductDetailClient({
             </div>
 
             <h2 className="font-mono text-xl font-bold text-text-primary mb-3">
-              Ready to deploy?
+              立即体验我们的云服务
             </h2>
             <p className="text-[12px] text-text-secondary font-mono mb-6">
               <span className="text-syntax-comment"># </span>
-              Free trial. No credit card.
+              注册即可获得免费试用额度，无需信用卡
             </p>
 
             <Link href="/register" className="btn-primary text-[12px] !py-2.5 !px-8">
-              $ ./deploy --free-trial
+              免费试用
             </Link>
           </motion.div>
         </div>

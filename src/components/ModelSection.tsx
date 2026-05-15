@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { aiModels, modelCategories } from "@/data/solutions";
 
 export default function ModelSection() {
@@ -115,6 +116,18 @@ export default function ModelSection() {
             )}
           </motion.div>
         </AnimatePresence>
+
+        {/* View all link */}
+        <div className="text-center mt-8">
+          <Link
+            href="/models"
+            className="inline-flex items-center gap-1.5 text-[11px] font-mono
+              text-text-link hover:underline transition-all"
+          >
+            view all {aiModels.length} models
+            <ArrowRight size={12} />
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -19,11 +19,11 @@ export default function SolutionSection() {
             </h2>
             <p className="text-[13px] text-text-secondary font-mono">
               <span className="text-syntax-comment">// </span>
-              Secure, efficient, scalable infrastructure for every industry
+              为不同行业提供安全、高效、可扩展的数据与算力基础设施
             </p>
           </div>
           <Link
-            href="/solutions/manufacturing"
+            href="/solutions"
             className="inline-flex items-center gap-1.5 text-[11px] font-mono text-text-link
               hover:underline transition-all shrink-0"
           >

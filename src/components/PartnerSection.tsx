@@ -11,10 +11,10 @@ const partners = [
 ];
 
 const coopModes = [
-  { title: "Tech Partner", desc: "Joint R&D and open source contributions", color: "text-accent" },
-  { title: "Channel", desc: "Product distribution and market expansion", color: "text-success" },
-  { title: "Solution", desc: "Industry solution co-delivery", color: "text-syntax-function" },
-  { title: "Ecosystem", desc: "Open platform and standards", color: "text-warning" },
+  { title: "核心技术", desc: "深度产品研发、技术适配与集成实施", color: "text-accent" },
+  { title: "云服务与渠道", desc: "云代理、分销、渠道拓展全链路合作", color: "text-success" },
+  { title: "基础设施与公共事业", desc: "硬件代理、弱电工程、政企合作", color: "text-syntax-function" },
+  { title: "企业软件与方案", desc: "ERP/OA/CRM 集成与联合实施", color: "text-warning" },
 ];
 
 export default function PartnerSection() {
@@ -26,11 +26,11 @@ export default function PartnerSection() {
             {/* src/config/partners.config.ts */}
           </p>
           <h2 className="ide-section-title">
-            export const partners: Partner[]
+            interface PartnerEcosystem
           </h2>
           <p className="text-[13px] text-text-secondary font-mono max-w-[520px] mx-auto mb-12">
             <span className="text-syntax-comment">// </span>
-            Building the distributed compute ecosystem with industry leaders
+            携手多家行业伙伴，共建分布式存算一体产业生态
           </p>
         </div>
 

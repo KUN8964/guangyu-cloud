@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import ValueCards from "@/components/ValueCards";
+import NodeMapSection from "@/components/NodeMapSection";
 import ProductSection from "@/components/ProductSection";
 import SolutionSection from "@/components/SolutionSection";
 import GPUSection from "@/components/GPUSection";
@@ -12,6 +13,7 @@ export default function Home() {
     <>
       <Hero />
       <ValueCards />
+      <NodeMapSection />
       <ProductSection />
       <SolutionSection />
       <GPUSection />

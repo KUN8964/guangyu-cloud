@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Cpu, MemoryStick, HardDrive } from "lucide-react";
+import { Cpu, MemoryStick, HardDrive, ArrowRight } from "lucide-react";
 import { gpuConfigs, type GPUConfig } from "@/data/gpu";
 
 function GPUCard({ gpu, index }: { gpu: GPUConfig; index: number }) {
@@ -74,6 +74,7 @@ function GPUCard({ gpu, index }: { gpu: GPUConfig; index: number }) {
 }
 
 export default function GPUSection() {
+  const previewGpus = gpuConfigs.slice(0, 4);
   return (
     <section id="gpu" className="py-20 bg-bg-base relative">
       <div className="max-w-6xl mx-auto px-6">
@@ -90,10 +91,22 @@ export default function GPUSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {gpuConfigs.map((g, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {previewGpus.map((g, i) => (
             <GPUCard key={g.id} gpu={g} index={i} />
           ))}
+        </div>
+
+        {/* View all link */}
+        <div className="text-center mt-8">
+          <Link
+            href="/compute"
+            className="inline-flex items-center gap-1.5 text-[11px] font-mono
+              text-text-link hover:underline transition-all"
+          >
+            view all 8 GPU configurations
+            <ArrowRight size={12} />
+          </Link>
         </div>
       </div>
     </section>
