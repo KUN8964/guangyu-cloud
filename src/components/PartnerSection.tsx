@@ -26,7 +26,7 @@ export default function PartnerSection() {
             {/* src/config/partners.config.ts */}
           </p>
           <h2 className="ide-section-title">
-            interface PartnerEcosystem
+            合作伙伴
           </h2>
           <p className="text-[13px] text-text-secondary font-mono max-w-[520px] mx-auto mb-12">
             <span className="text-syntax-comment">// </span>

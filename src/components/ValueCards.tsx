@@ -19,7 +19,7 @@ export default function ValueCards() {
             {/* src/components/ValueCards.tsx */}
           </p>
           <h2 className="ide-section-title">
-            whyChooseGuangyu()
+            核心优势
           </h2>
           <p className="text-[13px] text-text-secondary font-mono">
             <span className="text-syntax-comment">// </span>

@@ -83,7 +83,7 @@ export default function GPUSection() {
             {/* src/config/gpu.config.ts */}
           </p>
           <h2 className="ide-section-title">
-            interface GPUConfig
+            算力集群
           </h2>
           <p className="text-[13px] text-text-secondary font-mono max-w-[480px] mx-auto">
             <span className="text-syntax-comment">// </span>

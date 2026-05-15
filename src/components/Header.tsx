@@ -5,13 +5,13 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Products", href: "/#products" },
-  { label: "Solutions", href: "/solutions" },
-  { label: "GPU", href: "/compute" },
-  { label: "Models", href: "/models" },
-  { label: "Support", href: "/support" },
-  { label: "Partners", href: "/partners" },
-  { label: "About", href: "/about" },
+  { label: "产品", href: "/#products", id: "products" },
+  { label: "解决方案", href: "/solutions", id: "solutions" },
+  { label: "算力集群", href: "/compute", id: "gpu" },
+  { label: "AI模型", href: "/models", id: "models" },
+  { label: "服务支持", href: "/support", id: "support" },
+  { label: "合作伙伴", href: "/partners", id: "partners" },
+  { label: "关于我们", href: "/about", id: "about" },
 ];
 
 export default function Header() {
@@ -54,7 +54,7 @@ export default function Header() {
                 font-mono tracking-tight border-r border-transparent
                 hover:bg-bg-overlay transition-all duration-150"
             >
-              {link.label}.tsx
+              {link.label}
             </Link>
           ))}
         </div>
@@ -66,13 +66,13 @@ export default function Header() {
             className="text-[11px] text-text-muted hover:text-text-link
               font-mono transition-colors px-2"
           >
-            Sign In
+            登录
           </Link>
           <Link
             href="/console"
             className="btn-primary text-[12px] !py-1.5 !px-4"
           >
-            $ console
+            控制台
           </Link>
         </div>
 
@@ -104,7 +104,7 @@ export default function Header() {
                     text-[12px] text-text-secondary hover:text-text-primary hover:bg-bg-overlay
                     font-mono rounded-md transition-all duration-150"
                 >
-                  📄 {link.label}.tsx
+                  📄 {link.label}
                   <ChevronRight size={14} className="text-text-muted" />
                 </Link>
               ))}
@@ -115,7 +115,7 @@ export default function Header() {
                 className="py-2.5 px-3 text-[12px] text-text-muted hover:text-text-link
                   font-mono rounded-md transition-colors duration-150"
               >
-                Sign In
+                登录
               </Link>
               <Link
                 href="/console"
@@ -123,7 +123,7 @@ export default function Header() {
                 className="mt-2 py-2.5 px-4 bg-accent text-white text-center text-[12px] font-bold
                   font-mono rounded-md"
               >
-                $ console
+                控制台
               </Link>
             </div>
           </div>

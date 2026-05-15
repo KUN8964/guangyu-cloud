@@ -15,7 +15,7 @@ export default function SolutionSection() {
               {/* src/app/solutions/[id]/page.tsx */}
             </p>
             <h2 className="ide-section-title">
-              enum IndustrySolution
+              行业解决方案
             </h2>
             <p className="text-[13px] text-text-secondary font-mono">
               <span className="text-syntax-comment">// </span>

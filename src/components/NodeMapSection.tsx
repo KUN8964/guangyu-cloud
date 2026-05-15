@@ -32,7 +32,7 @@ export default function NodeMapSection() {
             {/* src/network/topology.ts */}
           </p>
           <h2 className="ide-section-title">
-            interface NodeTopology
+            节点网络
           </h2>
           <p className="text-[13px] text-text-secondary font-mono max-w-[520px] mx-auto">
             <span className="text-syntax-comment">// </span>

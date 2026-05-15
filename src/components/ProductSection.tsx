@@ -76,7 +76,7 @@ export default function ProductSection() {
             {/* src/app/products/[id]/page.tsx */}
           </p>
           <h2 className="ide-section-title">
-            const products: Product[]
+            产品与服务
           </h2>
           <p className="text-[13px] text-text-secondary font-mono">
             <span className="text-syntax-comment">// </span>

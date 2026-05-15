@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import DecryptedText from "./DecryptedText";
 
 export default function Hero() {
   return (
@@ -45,12 +46,33 @@ export default function Hero() {
             </div>
 
             <h1 className="font-mono text-[32px] leading-[1.3] font-bold mb-4 tracking-tight">
-              <span className="text-accent">企业级</span>
-              <span className="text-text-primary">云存储解决方案</span>
+              <DecryptedText
+                text="企业级"
+                speed={60}
+                maxIterations={8}
+                sequential={false}
+                className="text-accent"
+              />
+              {" "}
+              <DecryptedText
+                text="云存储解决方案"
+                speed={60}
+                maxIterations={10}
+                sequential={false}
+                className="text-text-primary"
+                delay={400}
+              />
             </h1>
 
             <p className="text-[13px] text-text-secondary font-mono leading-relaxed mb-10">
-              安全可靠的数据存储服务，助力企业数字化转型
+              <DecryptedText
+                text="安全可靠的数据存储服务，助力企业数字化转型"
+                speed={40}
+                maxIterations={12}
+                sequential={true}
+                className="text-text-secondary"
+                delay={800}
+              />
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -74,7 +96,13 @@ export default function Hero() {
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="font-mono text-xl text-text-primary font-bold tracking-tight">
-                    {stat.val}
+                    <DecryptedText
+                      text={stat.val}
+                      speed={40}
+                      maxIterations={6}
+                      className="text-text-primary"
+                      delay={1200}
+                    />
                   </p>
                   <p className="text-[10px] text-text-muted font-mono mt-0.5">
                     {stat.label}
