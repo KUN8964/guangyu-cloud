@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, LogOut } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navLinks = [
   { label: "产品", href: "/#products", id: "products" },
@@ -17,6 +18,7 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -59,21 +61,44 @@ export default function Header() {
           ))}
         </div>
 
-        {/* Auth — IDE status bar buttons */}
+        {/* Auth — conditional on login state */}
         <div className="hidden lg:flex items-center gap-2">
-          <Link
-            href="/login"
-            className="text-[11px] text-text-muted hover:text-text-link
-              font-mono transition-colors px-2"
-          >
-            登录
-          </Link>
-          <Link
-            href="/console"
-            className="btn-primary text-[12px] !py-1.5 !px-4"
-          >
-            控制台
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <span className="text-[10px] text-success font-mono tracking-tight">
+                ● {user?.maskedPhone}
+              </span>
+              <Link
+                href="/console"
+                className="btn-primary text-[12px] !py-1.5 !px-4"
+              >
+                控制台
+              </Link>
+              <button
+                onClick={logout}
+                className="text-[11px] text-text-muted hover:text-error font-mono transition-colors px-1"
+                title="退出登录"
+              >
+                <LogOut size={14} />
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="text-[11px] text-text-muted hover:text-text-link
+                  font-mono transition-colors px-2"
+              >
+                登录
+              </Link>
+              <Link
+                href="/console"
+                className="btn-primary text-[12px] !py-1.5 !px-4"
+              >
+                控制台
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -109,22 +134,47 @@ export default function Header() {
                 </Link>
               ))}
               <hr className="my-2 border-border-muted" />
-              <Link
-                href="/login"
-                onClick={() => setMobileOpen(false)}
-                className="py-2.5 px-3 text-[12px] text-text-muted hover:text-text-link
-                  font-mono rounded-md transition-colors duration-150"
-              >
-                登录
-              </Link>
-              <Link
-                href="/console"
-                onClick={() => setMobileOpen(false)}
-                className="mt-2 py-2.5 px-4 bg-accent text-white text-center text-[12px] font-bold
-                  font-mono rounded-md"
-              >
-                控制台
-              </Link>
+              {isAuthenticated ? (
+                <>
+                  <div className="py-2.5 px-3 text-[11px] text-success font-mono">
+                    ● {user?.maskedPhone}
+                  </div>
+                  <Link
+                    href="/console"
+                    onClick={() => setMobileOpen(false)}
+                    className="py-2.5 px-4 bg-accent text-white text-center text-[12px] font-bold
+                      font-mono rounded-md"
+                  >
+                    控制台
+                  </Link>
+                  <button
+                    onClick={() => { logout(); setMobileOpen(false); }}
+                    className="mt-2 py-2.5 px-3 text-[12px] text-text-muted hover:text-error
+                      font-mono rounded-md transition-colors duration-150 text-center"
+                  >
+                    退出登录
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="py-2.5 px-3 text-[12px] text-text-muted hover:text-text-link
+                      font-mono rounded-md transition-colors duration-150"
+                  >
+                    登录
+                  </Link>
+                  <Link
+                    href="/console"
+                    onClick={() => setMobileOpen(false)}
+                    className="mt-2 py-2.5 px-4 bg-accent text-white text-center text-[12px] font-bold
+                      font-mono rounded-md"
+                  >
+                    控制台
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
