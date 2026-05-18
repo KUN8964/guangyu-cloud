@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PixelPet from "@/components/PixelPet";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,10 +33,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-bg-base text-text-primary`}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <PixelPet />
+        <AuthProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <PixelPet />
+        </AuthProvider>
       </body>
     </html>
   );
