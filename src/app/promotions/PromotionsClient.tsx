@@ -15,7 +15,7 @@ const promotions = [
     tagColor: "text-syntax-keyword",
     bgTag: "bg-syntax-keyword/10 border-syntax-keyword/30",
     endDate: "2026.08.31",
-    href: "#",
+    href: "/promotions/summer-gpu",
   },
   {
     id: "new-user-gift",
@@ -27,7 +27,7 @@ const promotions = [
     tagColor: "text-success",
     bgTag: "bg-success/10 border-success/30",
     endDate: "长期有效",
-    href: "/register",
+    href: "/promotions/new-user-gift",
   },
   {
     id: "model-free-trial",
@@ -39,7 +39,7 @@ const promotions = [
     tagColor: "text-syntax-keyword",
     bgTag: "bg-syntax-keyword/10 border-syntax-keyword/30",
     endDate: "2026.09.30",
-    href: "/models",
+    href: "/promotions/model-free-trial",
   },
   {
     id: "partner-referral",
@@ -51,7 +51,7 @@ const promotions = [
     tagColor: "text-success",
     bgTag: "bg-success/10 border-success/30",
     endDate: "长期有效",
-    href: "#",
+    href: "/promotions/partner-referral",
   },
 ];
 
