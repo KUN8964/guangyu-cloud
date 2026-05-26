@@ -12,6 +12,7 @@ const navLinks = [
   { label: "AI模型", href: "/models", id: "models" },
   { label: "服务支持", href: "/support", id: "support" },
   { label: "合作伙伴", href: "/partners", id: "partners" },
+  { label: "促销及活动", href: "/promotions", id: "promotions" },
   { label: "关于我们", href: "/about", id: "about" },
 ];
 

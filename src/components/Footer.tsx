@@ -21,6 +21,12 @@ const footerCols = [
     ],
   },
   {
+    title: "Promotions",
+    links: [
+      { label: "active.tsx", href: "/promotions" },
+    ],
+  },
+  {
     title: "Support",
     links: [
       { label: "docs.md", href: "/support" },
@@ -34,7 +40,7 @@ export default function Footer() {
   return (
     <footer className="bg-bg-overlay border-t border-border-default">
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
